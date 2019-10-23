@@ -14,11 +14,11 @@ class CrearTablaCompra extends Migration
     public function up()
     {
         Schema::create('compra', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->unsignedInteger('proveedor_id');
-            $table->foreign('proveedor_id','fk_proveedor_compra')->references('id')->on('proveedor')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('proveedor_id', 'fk_proveedor_compra')->references('id')->on('proveedor')->onDelete('restrict')->onUpdate('restrict');
             $table->date('fecha');
-            $table->string('observacion',150);
+            $table->string('observacion', 150);
             $table->timestamps();
         });
     }

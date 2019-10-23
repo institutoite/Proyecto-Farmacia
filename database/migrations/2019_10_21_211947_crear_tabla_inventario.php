@@ -14,8 +14,12 @@ class CrearTablaInventario extends Migration
     public function up()
     {
         Schema::create('inventario', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            
+            $table->increments('id');
+            $table->unsignedInteger('stock');
+            $table->double('precio');
+            $table->string('lote', 25);
+            $table->date('fechavencimiento');
+            $table->timestamp('fechaingreso');
             $table->timestamps();
         });
     }

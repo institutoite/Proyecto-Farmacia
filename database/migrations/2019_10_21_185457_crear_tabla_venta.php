@@ -14,11 +14,11 @@ class CrearTablaVenta extends Migration
     public function up()
     {
         Schema::create('venta', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->unsignedInteger('cliente_id');
-            $table->foreign('cliente_id','fk_cliente_venta')->references('id')->on('cliente')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('cliente_id', 'fk_cliente_venta')->references('id')->on('cliente')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedInteger('empleado_id');
-            $table->foreign('cliente_id','fk_empleado_venta')->references('id')->on('empleado')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('cliente_id', 'fk_empleado_venta')->references('id')->on('empleado')->onDelete('restrict')->onUpdate('restrict');
             $table->date('fecha');
             $table->string('descripcion', 100)->nullable();
             $table->timestamps();

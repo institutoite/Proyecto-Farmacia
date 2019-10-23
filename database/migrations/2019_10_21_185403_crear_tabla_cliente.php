@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaEmpleado extends Migration
+class CrearTablaCliente extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CrearTablaEmpleado extends Migration
      */
     public function up()
     {
-        Schema::create('empleado', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('cliente', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('persona_id');
-            $table->foreign('persona_id','fk_persona_empleado')->references('id')->on('persona')->onDelete('restrict')->onUpdate('restrict');
-            $table->double('sueldo');
-            $table->date('fechaingreso');
+            $table->foreign('persona_id', 'fk_persona_cliente')->references('id')->on('persona')->onDelete('restrict')->onUpdate('restrict');
+            
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CrearTablaEmpleado extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empleado');
+        Schema::dropIfExists('cliente');
     }
 }

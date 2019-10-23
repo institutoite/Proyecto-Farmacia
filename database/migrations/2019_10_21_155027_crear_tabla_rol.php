@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaCliente extends Migration
+class CrearTablaRol extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CrearTablaCliente extends Migration
      */
     public function up()
     {
-        Schema::create('cliente', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedInteger('persona_id');
-            $table->foreign('persona_id','fk_persona_cliente')->references('id')->on('persona')->onDelete('restrict')->onUpdate('restrict');
+        Schema::create('rol', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre', 50)->unique();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CrearTablaCliente extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cliente');
+        Schema::dropIfExists('rol');
     }
 }

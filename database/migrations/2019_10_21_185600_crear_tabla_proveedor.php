@@ -14,10 +14,10 @@ class CrearTablaProveedor extends Migration
     public function up()
     {
         Schema::create('proveedor', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->unsignedInteger('persona_id');
-            $table->foreign('persona_id','fk_provedor_persona')->references('id')->on('persona')->onDelete('restrict')->onUpdate('restrict');
-            $table->string('rubro',50);
+            $table->foreign('persona_id', 'fk_provedor_persona')->references('id')->on('persona')->onDelete('restrict')->onUpdate('restrict');
+            $table->string('rubro', 50);
             $table->string('nacionalidad', 50);
             $table->string('razonsocial', 50);
             $table->timestamps();

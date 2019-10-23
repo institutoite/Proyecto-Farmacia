@@ -14,9 +14,9 @@ class CrearTablaProducto extends Migration
     public function up()
     {
         Schema::create('producto', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->unsignedInteger('tipoproducto_id');
-            $table->foreign('tipoproducto_id','fk_producto_tipoproducto')->references('id')->on('tipoproducto')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('tipoproducto_id', 'fk_producto_tipoproducto')->references('id')->on('tipoproducto')->onDelete('restrict')->onUpdate('restrict');
             $table->string('nombre', 50);
             $table->timestamps();
         });

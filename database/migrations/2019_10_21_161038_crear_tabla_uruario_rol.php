@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaUsurioRol extends Migration
+class CrearTablaUruarioRol extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,11 @@ class CrearTablaUsurioRol extends Migration
     public function up()
     {
         Schema::create('usuario_rol', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->unsignedInteger('rol_id');
-            $table->foreign('rol_id','fk_usuariorol_rol')->references('id')->on('rol')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('rol_id', 'fk_usuariorol_rol_1')->references('id')->on('rol')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedInteger('usuario_id');
-            $table->foreign('usuario_id', 'fk_usuariorol_usuario')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('usuario_id', 'fk_usuariorol_usuario_1')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
             $table->boolean('estado');
             $table->timestamps();
         });

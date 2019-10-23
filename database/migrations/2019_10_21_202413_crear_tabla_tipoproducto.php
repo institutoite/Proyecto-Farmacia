@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaRol extends Migration
+class CrearTablaTipoproducto extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CrearTablaRol extends Migration
      */
     public function up()
     {
-        Schema::create('rol', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nombre',50);
+        Schema::create('tipoproducto', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre', 50);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CrearTablaRol extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rol');
+        Schema::dropIfExists('tipoproducto');
     }
 }
