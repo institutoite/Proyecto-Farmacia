@@ -19,7 +19,9 @@ class CrearTablaProveedorProducto extends Migration
             $table->foreign('proveedor_id', 'fk_proveedor_producto')->references('id')->on('proveedor')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedInteger('producto_id');
             $table->foreign('producto_id', 'fk_proveedorproducto_producto')->references('id')->on('producto')->onDelete('restrict')->onUpdate('restrict');
-        
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
+            
             $table->timestamps();
         });
     }

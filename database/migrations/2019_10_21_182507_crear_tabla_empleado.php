@@ -19,6 +19,9 @@ class CrearTablaEmpleado extends Migration
             $table->foreign('persona_id','fk_persona_empleado')->references('id')->on('persona')->onDelete('restrict')->onUpdate('restrict');
             $table->double('sueldo');
             $table->date('fechaingreso');
+
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
             $table->timestamps();
         });
     }

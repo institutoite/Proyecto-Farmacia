@@ -10,4 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('permiso','PermisoController@index');
+Route::get('/','InicioController@index');
+Route::get('Admin/permiso','Admin\PermisoController@index')->name('permiso');
+Route::get('Admin/permiso/crear', 'Admin\PermisoController@crear')->name('permiso_crear');

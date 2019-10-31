@@ -20,6 +20,8 @@ class CrearTablaInventario extends Migration
             $table->string('lote', 25);
             $table->date('fechavencimiento');
             $table->timestamp('fechaingreso');
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
             $table->timestamps();
         });
     }

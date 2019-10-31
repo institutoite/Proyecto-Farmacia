@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaProveedor extends Migration
+class CrearTablaMenu extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CrearTablaProveedor extends Migration
      */
     public function up()
     {
-        Schema::create('proveedor', function (Blueprint $table) {
+        Schema::create('menu', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('persona_id');
-            $table->foreign('persona_id', 'fk_provedor_persona')->references('id')->on('persona')->onDelete('restrict')->onUpdate('restrict');
-            $table->string('rubro', 50);
-            $table->string('nacionalidad', 50);
-            $table->string('razonsocial', 50);
+            $table->unsignedInteger('menu_id')->default(0);
+            $table->string('nombre',50);
+            $table->string('url', 100);
+            
+            $table->unsignedInteger('orden')->default(0);
+            $table->string('icono', 50)->nullable();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
             $table->timestamps();
@@ -33,6 +34,6 @@ class CrearTablaProveedor extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proveedor');
+        Schema::dropIfExists('menu');
     }
 }

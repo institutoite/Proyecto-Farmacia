@@ -17,6 +17,8 @@ class CrearTablaCliente extends Migration
             $table->increments('id');
             $table->unsignedInteger('persona_id');
             $table->foreign('persona_id', 'fk_persona_cliente')->references('id')->on('persona')->onDelete('restrict')->onUpdate('restrict');
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
             
             $table->timestamps();
         });
