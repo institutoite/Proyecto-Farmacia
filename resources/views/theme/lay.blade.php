@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="{{asset("assets/lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css")}}">
   <!-- Bootstrap4 Duallistbox -->
   <link rel="stylesheet" href="{{asset("assets/lte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css")}}">
+  <link rel="stylesheet" href="{{asset("assets/css/custom.css")}}">
   <!-- Theme style -->
   @yield('style')
 
