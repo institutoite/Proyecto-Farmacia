@@ -18,7 +18,8 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal">
+              <form action="{{ route('menu_guardar') }}"  id="for-general" class="form-horizontal" method="POST">
+                @csrf
                 <div class="card-body">   
                   @include('Admin.menu.form')
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -35,7 +36,9 @@ class MenuController extends Controller
      */
     public function guardar(Request $request)
     {
-        //
+        //dd($request->all()); imprime lo que esta llegando del formulario
+        Menu::create($request->all());
+
     }
 
     /**
