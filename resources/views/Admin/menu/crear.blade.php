@@ -4,6 +4,13 @@
     Sistema de menu
 @endsection
 
+@section('scripts')
+ <script src="{{asset('assets/pages/scripts/admin/menu/crear.js')}}" type="text/javascript"></script>   
+@endsection
+
+
+
+
 @section('contenido')
     <div class="container-fluid">
         <div class="row">
@@ -12,13 +19,15 @@
                     
                      <div class="card-body table-responsive no-padding">
                               <!-- Horizontal Form -->
+            @include('includes.form-error')    
+            @include('includes.mensaje')             
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">FORMULARIO CREAR MENUS</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ route('menu_guardar') }}"  id="for-general" class="form-horizontal" method="POST">
+              <form action="{{ route('menu_guardar') }}"  id="form-general" class="form-horizontal" method="POST" autocomplete="off">
                 @csrf
                 <div class="card-body">   
                   @include('Admin.menu.form')

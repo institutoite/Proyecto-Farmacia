@@ -30,10 +30,12 @@
   <link rel="stylesheet" href="{{asset("assets/lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css")}}">
   <!-- Bootstrap4 Duallistbox -->
   <link rel="stylesheet" href="{{asset("assets/lte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css")}}">
+  
+   @yield('styles')
+
   <link rel="stylesheet" href="{{asset("assets/css/custom.css")}}">
   <!-- Theme style -->
-  @yield('style')
-
+ 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -72,6 +74,13 @@
 <script src="{{asset("assets/$theme/dist/js/adminlte.min.js")}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset("assets/$theme/dist/js/demo.js")}}"></script>
+
+@yield('scriptsPlugins')
+
+<script src="{{asset('assets/js/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery-validation/localization/messages_es.min.js')}}"></script>
+<script src="{{asset('assets/js/scripts.js')}}"></script>
+<script src="{{asset('assets/js/funciones.js')}}"></script>
 
 @yield('scripts')
 </body>
