@@ -73,7 +73,7 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, $id)
+    public function actualizar(ValidacionRol $request, $id)
     {
              
         Rol::findOrFail($id)->update($request->all());
@@ -88,6 +88,15 @@ class RolController extends Controller
      */
     public function eliminar($id)
     {
-        //
+      
+       
+            /*if (Rol::destroy($id)) {
+                return response()->json(['mensaje' => 'ok']);
+            } else {
+                return response()->json(['mensaje' => 'ng']);
+            }*/
+            Rol::destroy($id);
+        return redirect('Admin/rol')->with('mensaje', 'Rol eliminadocon exito');
+      
     }
 }
