@@ -40,7 +40,7 @@
         @endif
 
 
-      <form action="{{route('login_post')}}" method="post" autocomplete="off">
+      <form action="{{route('login_post')}}" method="POST" autocomplete="off">
         @csrf
         <div class="input-group mb-3">
           <input type="text" name="usuario" class="form-control" value="{{old('usuario')}}" placeholder="ingrese Usuario">

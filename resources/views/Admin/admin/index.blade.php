@@ -1,6 +1,6 @@
-@extends('theme.lay');
+@extends('theme.lay')
 @section('titulo')
-    Administrar
+    Administrador
 @endsection
 @section('contenido')
 <div class="row">

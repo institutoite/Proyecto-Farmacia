@@ -13,9 +13,13 @@
 
 Route::get('/', 'InicioController@index')->name('inicio');
 Route::get('seguridad/login','Seguridad\LoginController@index')->name('login');
-Route::post('seguridad/login', 'Seguridad\LoginController@login')->name('login_post');
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/admin', 'Admin\AdminController@index');
+Route::post('seguridad/login','Seguridad\LoginController@login')->name('login_post');
+Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout');
+
+
+Route::group(['middleware' => ['auth','superadmin']], function () {
+    
+    Route::get('Admin/', 'Admin\AdminController@index');
     Route::get('Admin/permiso', 'Admin\PermisoController@index')->name('permiso');
     Route::get('Admin/permiso/crear', 'Admin\PermisoController@crear')->name('permiso_crear');
 
