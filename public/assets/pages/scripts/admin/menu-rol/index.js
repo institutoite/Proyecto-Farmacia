@@ -1,4 +1,4 @@
-alert('ok');
+
 $('.menu_rol').on('change', function () {
     var data = {
         menu_id: $(this).data('menuid'),

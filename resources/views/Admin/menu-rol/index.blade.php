@@ -1,4 +1,4 @@
-@extends('theme.lay');
+@extends('theme.lay')
 @section('titulo')
     Sistema menus
 @endsection

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Admin\Rol;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class Usuario extends Authenticatable
 {
@@ -32,5 +33,8 @@ class Usuario extends Authenticatable
                 ]
             );
         }
+    }
+    public function setPasswordAttribute($pass){
+        $this->attributes['password']=Hash::make($pass);
     }
 }
