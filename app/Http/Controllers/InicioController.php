@@ -15,6 +15,6 @@ class InicioController extends Controller
     {
         //dd(session()->all());
         
-        return view("inicio");
+        return view('inicio');
     }
 }

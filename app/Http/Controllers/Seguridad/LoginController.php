@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
-    protected $redirectTo = '/';
+    protected $redirectTo = '/Admin';
 
 
     public function __construct()
@@ -36,6 +36,14 @@ class LoginController extends Controller
     public function username()
     {
         return 'usuario';
+    }
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect(route('login'));
     }
 
 

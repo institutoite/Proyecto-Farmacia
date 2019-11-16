@@ -19,6 +19,8 @@ Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout
 
 Route::group(['middleware' => ['auth','superadmin']], function () {
     
+    
+
     Route::get('Admin/', 'Admin\AdminController@index');
     Route::get('Admin/permiso', 'Admin\PermisoController@index')->name('permiso');
     Route::get('Admin/permiso/crear', 'Admin\PermisoController@crear')->name('permiso_crear');
