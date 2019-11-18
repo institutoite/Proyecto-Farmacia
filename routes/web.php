@@ -53,3 +53,11 @@ Route::group(['middleware' => ['auth','superadmin']], function () {
     
 });
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('Clases/persona', 'Clases\PersonaController@index')->name('persona');
+    Route::get('Clases/persona/crear', 'Clases\PersonaController@crear')->name('crear_persona');
+    Route::post('Clases/persona', 'Clases\PersonaController@guardar')->name('guardar_persona');
+    Route::get('Clases/persona/{id}/editar', 'Clases\PersonaController@editar')->name('editar_persona');
+    Route::put('Clases/persona/{id}', 'Clases\PersonaController@actualizar')->name('actualizar_persona');
+    Route::delete('Clases/persona/{id}', 'Clases\PersonaController@eliminar')->name('eliminar_persona');
+});
