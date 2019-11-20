@@ -13,13 +13,15 @@ class DatabaseSeeder extends Seeder
     {
         $this->TruncarTablas([
             'rol',
-            'permiso',
-            'usuario',
-            'usuario_rol'
+            'persona'
+            /*'usuario',
+            'usuario_rol',
+            'persona'*/
             ]); 
         $this->call(Tablarolseeder::class);
-        $this->call(TablaPermisoSider::class);
-        $this->call(UsuarioAdministradorSeeder::class);    
+        //$this->call(TablaPermisoSider::class);
+        //$this->call(UsuarioAdministradorSeeder::class);
+        $this->call(TablaPersonaSeeder::class);  
     }
     protected function TruncarTablas(array $tablas){
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -27,5 +29,6 @@ class DatabaseSeeder extends Seeder
             DB::table($tabla)->truncate();
         }
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-       }
+    }
+    
 }

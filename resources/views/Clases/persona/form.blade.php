@@ -35,11 +35,7 @@
             <option value="MUJER" selected> FEMENINO </option>
         @endif    
     @endisset
-
    
-      
-   
-        
     </select>
 </div>
 
@@ -51,3 +47,14 @@
 <div class="input-group mb-3">
     <input type="number" name="celular" class="form-control" value="{{old('celular',$PersonaBuscada->celular ?? '')}}" placeholder="ingrese celular">
 </div>
+
+<!--<div class="input-group mb-3">
+    <select name="tipo" id="genero" class="form-control">
+        <option value="">Ejila</option>
+        <option value="proveedor">Proveedor</option>
+        <option value="empleado">Empleado</option>
+        <option value="cliente">Cliente</option>
+    </select>
+</div> -->
+
+

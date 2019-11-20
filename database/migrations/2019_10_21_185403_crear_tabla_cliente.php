@@ -15,6 +15,7 @@ class CrearTablaCliente extends Migration
     {
         Schema::create('cliente', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('carnet',10)->nullable();
             $table->unsignedInteger('persona_id');
             $table->foreign('persona_id', 'fk_persona_cliente')->references('id')->on('persona')->onDelete('restrict')->onUpdate('restrict');
             $table->charset = 'utf8mb4';
