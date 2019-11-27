@@ -13,16 +13,16 @@ class CrearTablaDetalleCompra extends Migration
      */
     public function up()
     {
-        Schema::create('detalle_compra', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('compra_producto', function (Blueprint $table) {
+            $table->Increments('id');
             $table->unsignedInteger('compra_id');
             $table->foreign('compra_id', 'fk_compra_detallecompra')->references('id')->on('compra')->onDelete('restrict')->onUpdate('restrict');
-
             $table->unsignedInteger('producto_id');
-            $table->foreign('producto_id', 'fk_producto_detallecompra')->references('id')->on('producto')->onDelete('restrict')->onUpdate('restrict');
-
+            $table->foreign('producto_id', 'fk_compra_producto')->references('id')->on('producto')->onDelete('restrict')->onUpdate('restrict');
+            
             $table->unsignedInteger('cantidad');
             $table->double('preciounitario');
+            $table->double('subtotal');
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
             $table->timestamps();

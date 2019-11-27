@@ -22,6 +22,13 @@
                         <div class="card-header">
                             <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_persona')}}">Crear Persona</a></h3>
                         </div>
+                         <nav class="navbar navbar-light">
+                            <a class="navbar-brand">Busqueda de empleados</a>
+                            <form class="form-inline">
+                                <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Escribe aqui que desea buscar" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
+                            </form>
+                        </nav>
                         <div class="card-body">
                             @csrf   
                             <table class="table table-hover table-striped">

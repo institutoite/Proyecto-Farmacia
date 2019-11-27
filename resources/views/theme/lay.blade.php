@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,6 +41,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
          @include('theme/header')
@@ -69,7 +71,7 @@
         
     </div>
 
-<p><button class="preview"> Preview</button></p>
+
 
 
 <script src="{{asset("assets/$theme/plugins/jquery/jquery.min.js")}}" ></script>
@@ -91,6 +93,7 @@
 
 <script src="{{asset('assets/js/scritps.js')}}"></script>
 <script src="{{asset('assets/js/funciones.js')}}"></script>
+
 
 @yield('scripts')
 </body>

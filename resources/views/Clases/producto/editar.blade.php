@@ -21,12 +21,12 @@
               <div class="card-header">
                 <h3 class="card-title">FORMULARIO EDITAR TIPO PRODUCTO</h3>
               </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form action="{{ route('actualizar_tipoproducto',['id'=>$Dato->id]) }}"  id="form-general" class="form-horizontal" method="POST" autocomplete="off">
+            
+              <form action="{{ route('actualizar_producto',['id'=>1]) }}"  id="form-general" class="form-horizontal" method="POST" autocomplete="off">
                 @csrf @method("put")
                 <div class="card-body">   
-                  @include('Clases.tipoproducto.form')
+                  
+                  @include('Clases.producto.form')
                 </div>
                 <div class="card-footer">   
                   @include('includes.boton_form_editar')

@@ -14,18 +14,12 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //$persona=Persona::all();
-        //$empleado=Empleado::all();
-        //$empleados=\DB::table('empleado')->select('id','persona_id','sueldo','fechaingreso')->get();
-        //$personas=\DB::table('persona')->select('id','nombre','apellidop','apellidom','fechanacimiento')->get();
-       // $empleado = Empleado::join('Categorias', 'idCategoria', '=', 'Categorias.id')->select('Productos.id', 'Productos.nombre', 'Categorias.nombre as NombreCategoria')->get();
-        //$Personas = Personas::with(['empleado'])->get();     
-        $Personas = Persona::with(['empleado'])->get()->toArray();
-        
-        //dd($Personas);
-         return view('Clases.empleado.index')->with('Personas',$Personas);
+        $nombre = $request->get('buscarpor');
+        //dd($nombre); 
+        $Personas = Persona::where('nombre','LIKE',"%$nombre%")->with(['empleado'])->get()->toArray();
+        return view('Clases.empleado.index')->with('Personas', $Personas);
 
     }
 
@@ -34,9 +28,10 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
-        //
+        $Personas=Persona::all();
+        return view('Clases.empleado.crear',compact('Personas'));
     }
 
     /**
@@ -45,9 +40,12 @@ class EmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(Request $request)
     {
-        //
+        //dd($request->all());
+        $UnEmpleado = Empleado::create($request->all());
+        
+        return redirect('Clases/empleado')->with('mensaje', 'El empleado ha sido guardado correctamente');
     }
 
     /**
@@ -56,7 +54,7 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function mostrar($id)
     {
         //
     }
@@ -67,9 +65,12 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editar($id)
     {
-        //
+        $EmpleadoBuscado = Empleado::findOrFail($id);
+        //dd($UsuarioBuscado);
+        $Personas = Persona::all();
+        return view('Clases.empleado.editar', compact('EmpleadoBuscado','Personas'));
     }
 
     /**
@@ -79,9 +80,12 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function actualizar(Request $request, $id)
     {
-        //
+        //dd($request->all());
+        $Empleado= Empleado::findOrFail($id)->update($request->all());
+        //dd($Empleado);
+        return redirect('Clases/empleado')->with('mensaje', 'La actualizacion se hizo correctamente');
     }
 
     /**
@@ -90,8 +94,10 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function eliminar($id)
     {
-        //
+        $Empleado = Empleado::findOrFail($id);
+        $Empleado->delete();
+        return redirect('Clases/empleado')->with('mensaje', 'Se elimo correctamente la persona con id ' . $id);
     }
 }

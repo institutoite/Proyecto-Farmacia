@@ -14,7 +14,7 @@ class CrearTablaMenuRol extends Migration
     public function up()
     {
         Schema::create('menu_rol', function (Blueprint $table) {
-            
+            $table->increments('id');
             $table->unsignedInteger('rol_id');
             $table->foreign('rol_id','fk_menurol_rol')->references('id')->on('rol')->onDelete('restrict')->onUpdate('restrict');
 

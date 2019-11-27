@@ -29,9 +29,9 @@ class ValidacionPersona extends FormRequest
             'apellidom' => 'required|max:25',
             'fechanacimiento' => 'required', 
             'direccion' => 'required|max:150',
-            'genero' => 'required|max:15',
-            'telefono' => 'required|max:25',
-            'celular' => 'required|max:25'
+            'genero' => 'required|max:15'
+            //'telefono' => 'required|max:25',
+            //'celular' => 'required|max:25'
         ];
     }
 }

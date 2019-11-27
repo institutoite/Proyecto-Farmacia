@@ -1,6 +1,6 @@
 @extends('theme.lay')
 @section('titulo')
-    Empleado
+    Cliente
 @endsection
 
 @section("scripts")
@@ -20,9 +20,16 @@
                      
                     
                         <div class="card-header">
-                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_empleado')}}">Crear Empleado</a></h3>
+                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_cliente')}}">Crear Cliente</a></h3>
                         </div>
                         <div class="card-body">
+                        <nav class="navbar navbar-light">
+                            <a class="navbar-brand">Busqueda de Clientes</a>
+                            <form class="form-inline">
+                                <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Criterio buscar" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
+                            </form>
+                        </nav>    
                             @csrf   
                             <table class="table table-hover table-striped">
                                 <thead>                  
@@ -34,32 +41,37 @@
                                         <th>FechaNac</th>
                                         <th>Genero</th>
                                         <th>Celular</th>
-                                        <th>sueldo</th>
-                                        <th>FechaIn</th>
-                                       
+                                        <th>carnet</th>
+                                        <th>Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     
-                                    @foreach ($Personas as $empleados)
+                                    @foreach ($Personas as $clientes)
                                         <tr>
-                                            @if($empleados['empleado']['persona_id']>0)
-                                                <td>{{$empleados['nombre']}}</td>
-                                                <td>{{$empleados['apellidop']}}</td>
-                                                <td>{{$empleados['apellidom']}}</td>
-                                                <td>{{$empleados['fechanacimiento']}}</td>
-                                                <td>{{$empleados['genero']}}</td>
-                                                <td>{{$empleados['celular']}}</td>
-                                                
-                                                <td>{{$empleados['empleado']['sueldo']}}</td>
-                                                <td>{{$empleados['empleado']['fechaingreso']}}</td>
+                                            @if($clientes['cliente']['persona_id']>0)
+                                                <td>{{$clientes['nombre']}}</td>
+                                                <td>{{$clientes['apellidop']}}</td>
+                                                <td>{{$clientes['apellidom']}}</td>
+                                                <td>{{$clientes['fechanacimiento']}}</td>
+                                                <td>{{$clientes['genero']}}</td>
+                                                <td>{{$clientes['celular']}}</td>
+                                                <td>{{$clientes['cliente']['carnet']}}</td>
+                                                   <td>
+                                                <a href="{{route('editar_cliente', ['id' =>$clientes['cliente']['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
+                                                <i class="fa fa-fw fa-edit text-primary"></i>
+                                                </a>
+                                                <form action="{{route('eliminar_cliente', ['id' => $clientes['cliente']['id']])}}" class="d-inline form-eliminar" method="POST">
+                                                    @csrf @method("delete")
+                                                    <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este Persona">
+                                                        <i class="fa fa-fw fa-trash text-danger"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
                                             @endif
                                         </tr>
                                     @endforeach
-                                   
                                     
-                                    
-                               
                                 </tbody>
                             </table>
                         </div>

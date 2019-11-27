@@ -30,6 +30,8 @@
                                     <tr>
                                         <th>Nº</th>
                                         <th>Nombre</th>
+                                        <th>Detalle</th>
+                                        <th>Costo</th>
                                         <th class="width70">Opciones</th>
                                     </tr>
                                 </thead>
@@ -38,6 +40,8 @@
                                         <tr>
                                             <td>#</td>
                                             <td>{{$data->nombre}}</td>
+                                            <td>{{$data->detalle}}</td>
+                                            <td>{{$data->costo}}</td>
                                             <td>
                                                 <a href="{{route('editar_producto', ['id' => $data->id])}}" class="btn-accion-tabla tooltipsC" title="Editar este registro">
                                                 <i class="fa fa-fw fa-edit text-primary"></i>

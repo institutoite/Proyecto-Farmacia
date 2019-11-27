@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Clases;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Clases\Persona;
+use App\Models\Clases\Cliente;
 
 class ClienteController extends Controller
 {
@@ -12,9 +14,16 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $nombre = $request->get('buscarpor');
+        //dd($nombre); 
+        $Personas = Persona::orwhere('nombre', 'LIKE', "%$nombre%")
+                           ->orwhere('apellidop', 'LIKE', "%$nombre%")
+                           ->orwhere('apellidom', 'LIKE', "%$nombre%")
+                           
+                           ->with(['cliente'])->get()->toArray();
+        return view('Clases.cliente.index')->with('Personas', $Personas);
     }
 
     /**
@@ -22,9 +31,10 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
-        //
+        $Personas = Persona::all();
+        return view('Clases.cliente.crear', compact('Personas'));
     }
 
     /**
@@ -33,9 +43,12 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(Request $request)
     {
-        //
+
+        $UnEmpleado = Cliente::create($request->all());
+        ///dd($UnEmpleado);
+        return redirect('Clases/cliente')->with('mensaje', 'El Cliente ha sido guardado correctamente');
     }
 
     /**
@@ -44,7 +57,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function mostrar($id)
     {
         //
     }
@@ -55,9 +68,12 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editar($id)
     {
-        //
+        $ClienteBuscado = Cliente::findOrFail($id);
+        //dd($UsuarioBuscado);
+        $Personas = Persona::all();
+        return view('Clases.cliente.editar', compact('ClienteBuscado', 'Personas'));
     }
 
     /**
@@ -67,9 +83,11 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function actualizar(Request $request, $id)
     {
-        //
+        $Empleado = Cliente::findOrFail($id)->update($request->all());
+        //dd($Empleado);
+        return redirect('Clases/cliente')->with('mensaje', 'La actualizacion se hizo correctamente');
     }
 
     /**
@@ -78,8 +96,10 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function eliminar($id)
     {
-        //
+        $Cliente = Cliente::findOrFail($id);
+        $Cliente->delete();
+        return redirect('Clases/cliente')->with('mensaje', 'Se elimo correctamente el cliente con id ' . $id);
     }
 }

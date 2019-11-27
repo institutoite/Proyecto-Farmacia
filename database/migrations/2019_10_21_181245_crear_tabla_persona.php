@@ -21,8 +21,8 @@ class CrearTablaPersona extends Migration
             $table->date('fechanacimiento');
             $table->string('direccion', 150);
             $table->string('genero', 15);
-            $table->string('telefono', 25);
-            $table->string('celular', 25);
+            $table->string('telefono', 25)->nullable();
+            $table->string('celular', 25)->nullable();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
             

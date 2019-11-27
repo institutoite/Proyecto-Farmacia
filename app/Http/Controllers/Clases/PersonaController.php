@@ -14,10 +14,11 @@ class PersonaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data=Persona::orderBy('id')->get();
-        
+        $nombre=$request->get('buscarpor');
+        $data=Persona::orwhere('nombre','LIKE',"%$nombre%")->orwhere('apellidop', 'LIKE', "%$nombre%")->orwhere('apellidom', 'LIKE', "%$nombre%")->orderBy('id')->get();
+        //dd($nombre);
         return view('Clases.persona.index',compact('data'));
     }
 

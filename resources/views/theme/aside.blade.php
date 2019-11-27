@@ -1,6 +1,6 @@
 
 <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4 bg-info">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="{{asset("assets/lte/dist/img/AdminLTELogo.png")}}"
@@ -11,7 +11,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar bg-info">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">

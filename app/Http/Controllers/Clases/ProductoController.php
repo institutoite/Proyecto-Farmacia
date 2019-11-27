@@ -18,6 +18,7 @@ class ProductoController extends Controller
     public function index()
     {
         $Datos = Producto::orderBy('id')->get(); 
+
         return view('Clases.producto.index', compact('Datos'));
     }
 
@@ -67,9 +68,10 @@ class ProductoController extends Controller
      */
     public function editar($id)
     {
-        $Dato = Producto::findOrFail($id);
-        //dd($UsuarioBuscado);
-        return view('Clases.producto.editar', compact('Dato'));
+        $Datos = Producto::findOrFail($id);
+        $Dato = Tipoproducto::orderBy('id')->pluck('nombre','id')->toArray();
+        //dd($Datos->id);
+        return view('Clases.producto.editar', compact('Datos','Dato'));
     }
 
     /**

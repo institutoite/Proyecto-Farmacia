@@ -11,6 +11,8 @@
 |
 */
 
+use App\Models\Clases\Compra;
+
 Route::get('/', 'InicioController@index')->name('inicio');
 Route::get('seguridad/login','Seguridad\LoginController@index')->name('login');
 Route::post('seguridad/login','Seguridad\LoginController@login')->name('login_post');
@@ -88,5 +90,57 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('Clases/empleado/{id}', 'Clases\EmpleadoController@actualizar')->name('actualizar_empleado');
     Route::delete('Clases/empleado/{id}', 'Clases\EmpleadoController@eliminar')->name('eliminar_empleado');
 
+    // RUTAS PARA CLIENTES
+    Route::get('Clases/cliente', 'Clases\ClienteController@index')->name('cliente');
+    Route::get('Clases/cliente/crear', 'Clases\ClienteController@crear')->name('crear_cliente');
+    Route::post('Clases/cliente', 'Clases\ClienteController@guardar')->name('guardar_cliente');
+    Route::get('Clases/cliente/{id}/editar', 'Clases\ClienteController@editar')->name('editar_cliente');
+    Route::put('Clases/cliente/{id}', 'Clases\ClienteController@actualizar')->name('actualizar_cliente');
+    Route::delete('Clases/cliente/{id}', 'Clases\ClienteController@eliminar')->name('eliminar_cliente');
+
+    // RUTAS PARA PROVEEDORES
+    Route::get('Clases/proveedor', 'Clases\ProveedorController@index')->name('proveedor');
+    Route::get('Clases/proveedor/crear', 'Clases\ProveedorController@crear')->name('crear_proveedor');
+    Route::post('Clases/proveedor', 'Clases\ProveedorController@guardar')->name('guardar_proveedor');
+    Route::get('Clases/proveedor/{id}/editar', 'Clases\ProveedorController@editar')->name('editar_proveedor');
+    Route::put('Clases/proveedor/{id}', 'Clases\ProveedorController@actualizar')->name('actualizar_proveedor');
+    Route::delete('Clases/proveedor/{id}', 'Clases\ProveedorController@eliminar')->name('eliminar_proveedor');
+
+    // RUTAS PARA PROVEEDORES
+    Route::get('Clases/proveedor', 'Clases\ProveedorController@index')->name('proveedor');
+    Route::get('Clases/proveedor/crear', 'Clases\ProveedorController@crear')->name('crear_proveedor');
+    Route::post('Clases/proveedor', 'Clases\ProveedorController@guardar')->name('guardar_proveedor');
+    Route::get('Clases/proveedor/{id}/editar', 'Clases\ProveedorController@editar')->name('editar_proveedor');
+    Route::put('Clases/proveedor/{id}', 'Clases\ProveedorController@actualizar')->name('actualizar_proveedor');
+    Route::delete('Clases/proveedor/{id}', 'Clases\ProveedorController@eliminar')->name('eliminar_proveedor');
+
+    // rutas pra compra
     
+    Route::get('Clases/compra', 'Clases\CompraController@index')->name('compra');
+    Route::get('Clases/compra/crear', 'Clases\CompraController@crear')->name('crear_compra');
+    Route::post('Clases/compra', 'Clases\CompraController@guardar')->name('guardar_compra');
+    Route::get('Clases/compra/{id}/editar', 'Clases\CompraController@editar')->name('editar_compra');
+    Route::put('Clases/compra/{id}', 'Clases\CompraController@actualizar')->name('actualizar_compra');
+    Route::delete('Clases/compra/{id}', 'Clases\CompraController@eliminar')->name('eliminar_compra');
+   // Route::get('Clases/compra/creardetalle/{id}','Clases\CompraController@cargardetalle')->name('detalle');
+    Route::get('Clases/compra/productillos', 'Clases\ProductoController@getProductillos')->name('litar');
+
+    Route::get('Clases/compra/{id}/generar', 'Clases\CompraController@generar')->name('generar_compra');
+    Route::get('Clases/compra/guardardetalle', 'Clases\CompraController@guardardetalle')->name('agregar_detalle_compra');
+    Route::get('Clases/compra/eliminardetalle', 'Clases\CompraController@eliminardetalle')->name('eliminar_detalle');
+
+
+
+    // rutas para las Ventas
+    Route::get('Clases/venta', 'Clases\VentaController@index')->name('venta');
+    Route::get('Clases/venta/crear', 'Clases\VentaController@crear')->name('crear_venta');
+    Route::post('Clases/venta', 'Clases\VentaController@guardar')->name('guardar_venta');
+    Route::get('Clases/venta/{id}/editar', 'Clases\VentaController@editar')->name('editar_venta');
+    Route::put('Clases/venta/{id}', 'Clases\VentaController@actualizar')->name('actualizar_venta');
+    Route::delete('Clases/venta/{id}', 'Clases\VentaController@eliminar')->name('eliminar_venta');
+    Route::get('Clases/venta/{id}/generar', 'Clases\VentaController@generar')->name('generar_venta');
+
+    Route::get('Clases/venta/guardardetalle', 'Clases\VentaController@guardardetalle')->name('agregar_detalle');
+    Route::get('Clases/venta/eliminardetalle', 'Clases\VentaController@eliminardetalle')->name('eliminar_detalle');
 });
+

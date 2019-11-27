@@ -1,4 +1,4 @@
-@extends('theme.lay');
+@extends('theme.lay')
 @section('titulo')
     Sistema menus
 @endsection
@@ -32,6 +32,9 @@
                         </div>
                         <div class="card-body">   
                             @csrf
+                            <div class="card-header">
+                                <h3 class="card-title"><a class="btn btn-success" href="{{route('menu_crear')}}">Crear Menu</a></h3>
+                            </div>
                             <div class="dd" id="nestable">
                                 <ol class="dd-list">
                                     @foreach ($menus as $key => $item)
@@ -40,8 +43,8 @@
                                         @endif
                                         @include("admin.menu.menu-item",["item" => $item])
                                     @endforeach
-                    </ol>
-                </div>
+                                </ol>
+                            </div>
                         </div>
                     </div>
            

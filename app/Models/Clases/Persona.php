@@ -18,5 +18,9 @@ class Persona extends Model
     public function empleado(){
         return $this->hasOne(Empleado::class);
     }
+    public function proveedor()
+    {
+        return $this->hasOne(Proveedor::class);
+    }
 }
 
