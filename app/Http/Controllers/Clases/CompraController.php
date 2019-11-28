@@ -115,10 +115,6 @@ class CompraController extends Controller
             $Productos->toArray()
         );
 
-        /*if($request->ajax()){
-            $productos=Producto::produtillos();
-            return response()->json($productos);
-        }*/
     }
 
   
@@ -143,18 +139,17 @@ class CompraController extends Controller
         $idCompra = $request->idcompra;
         $FechaVencimiento = $Producto->fechavencimiento;
         $Cantidad = $request->cantidad;
+        $Lote=$request->lote;
         $Subtotal = $Producto->costo * $Cantidad;
         //dd();
         $Compra->productos()->attach($request->producto, ['cantidad' => $Cantidad, 'preciounitario' => $Producto->costo, 'subtotal' => $Subtotal]);
 
-        // datos de venta actual
-        //$Vector = ['producto' => $Producto->nombre, 'cantidad' => $Cantidad, 'costo' => $Costo, 'subtotal' => $Subtotal];
-
         $Proveedor = Proveedor::findOrFail($Compra['proveedor_id']);
         $Persona = Persona::findOrFail($Proveedor['persona_id']);
         $Productos = Producto::all();
-        //  ->orWhere('venta.id','=','producto_venta.venta_id')->get();
         $Compras = $Compra->productos;
+        $ProductoComprado= Producto::findOrFail($request->producto);
+        $ProductoComprado->update(['stock'=>($Cantidad+$ProductoComprado->stock),'lote'=>$Lote,'fechavencimiento'=>$request->fechavencimiento]);
         //dd($Venta);
         return view('Clases.compra.compra', compact('Compra', 'Persona', 'Productos', 'Compras'));
     }

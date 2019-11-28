@@ -9,6 +9,8 @@ use App\Models\Clases\Empleado;
 use App\Models\Clases\Producto;
 use App\Models\Clases\Venta;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 class VentaController extends Controller
 {
@@ -115,27 +117,38 @@ class VentaController extends Controller
 
     }
     public function guardardetalle(Request $request){
-        
-        //$Venta = Venta::findOrFail($request->);
-        //dd($request->all());
         $Venta=Venta::findOrFail($request->idventa);
         $Producto=Producto::findOrFail($request->producto);
         $idVenta= $request->idventa;
         $Costo=$Producto->costo;
         $Cantidad=$request->cantidad;
         $Subtotal=$Cantidad*$Costo;
- //dd();
         $Venta->productos()->attach($request->producto,['cantidad'=>$Cantidad,'preciounitario'=>$Costo,'subtotal'=>$Subtotal]);
-     
-        // datos de venta actual
+        
         $Vector=['producto'=>$Producto->nombre,'cantidad'=>$Cantidad,'costo'=>$Costo,'subtotal'=>$Subtotal];
 
         $Persona = Persona::findOrFail($Venta['id']);
         $Productos = Producto::all();
-                  //  ->orWhere('venta.id','=','producto_venta.venta_id')->get();
-        $Ventas=$Venta->productos;            
+        $ProductoVendido = Producto::findOrFail($request->producto);
+
+        $ProductoVendido->update(['stock' => ($ProductoVendido->stock- $Cantidad)]);
+        $Ventas=$Venta->productos;  
+        $Suma=$Ventas->sum('subtotal');          
         //dd($Venta);
-        return view('Clases.venta.venta',compact('Venta','Persona','Productos','Ventas'));    
+        dd($Suma);
+        return view('Clases.venta.venta',compact('Venta','Persona','Productos','Ventas','Suma'));    
     }
+
+    public function imprimirventa($idventa){
+        $Venta = Venta::findOrFail($idventa);
+        $Cliente = Cliente::findOrFail($Venta->cliente_id);
+        $Persona=Persona::findOrFail($Cliente->persona_id);
+        $Ventas = $Venta->productos;
+       // dd($Persona);
+        $pdf=PDF::loadView('Clases.venta.imprimirventa',compact('Ventas','Persona','Venta','Cliente'));
+        
+        return $pdf->stream('Venta.pdf');
+    }
+
 
 }

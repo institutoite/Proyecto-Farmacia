@@ -17,6 +17,11 @@ Route::get('/', 'InicioController@index')->name('inicio');
 Route::get('seguridad/login','Seguridad\LoginController@index')->name('login');
 Route::post('seguridad/login','Seguridad\LoginController@login')->name('login_post');
 Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout');
+Route::get('/pdf',function(){
+   
+    $pdf=PDF::loadView('');
+    return $pdf->stream();
+});
 
 
 Route::group(['middleware' => ['auth','superadmin']], function () {
@@ -142,5 +147,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('Clases/venta/guardardetalle', 'Clases\VentaController@guardardetalle')->name('agregar_detalle');
     Route::get('Clases/venta/eliminardetalle', 'Clases\VentaController@eliminardetalle')->name('eliminar_detalle');
+    Route::get('imprimir_venta/{idventa}','Clases\VentaController@imprimirventa')->name('imprimir_venta');
+
+
 });
 

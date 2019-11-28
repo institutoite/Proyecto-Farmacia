@@ -63,7 +63,7 @@
                                                 </td>
                                                 <td>
                                                     
-                                                    <a href="{{route('generar_compra', ['id' => $venta['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
+                                                    <a href="{{route('generar_venta', ['id' => $venta['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
                                                 <i class="fa fa-fw fa-list text-primary"></i>
                                                 </a>
                                                 </td>

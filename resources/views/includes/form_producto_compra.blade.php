@@ -3,7 +3,7 @@
         <select name="producto" id="" class="form-control">
                 <option value="">Seleccione un producto</option>
                 @foreach ($Productos as $item)
-                    <option value="{{$item->id}}"> {{$item->nombre}} </option>
+                    <option value="{{$item->id}}"> {{$item->nombre."(".$item->stock.")"}} </option>
                 @endforeach
                 
         </select>

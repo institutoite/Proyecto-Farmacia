@@ -63,11 +63,18 @@
                                         </td>   
                                         </tr> 
                                         @endforeach
-                                        
-                                    
-                                    
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{''}}</td>
                                 </tbody>
                             </table>
+                                 <div class="row">
+                                    <div>
+                                        <a href="{{route('imprimir_venta',['idventa'=>$Venta->id])}}" class="btn btn-success">Finalizar</a>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>      
