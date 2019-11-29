@@ -98,11 +98,30 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function eliminary($id)
+    public function eliminar($id)
     {
         $Venta = Venta::findOrFail($id);
         $Venta->delete();
         return redirect('Clases/venta')->with('mensaje', 'Se elimo correctamente la venta');
+    }
+    public function eliminardetalle($idventa,$idProducto)
+    {
+        $Venta = Venta::findOrFail($idventa);
+        $CuantosProductos = $Venta->productos()
+            ->where('producto_id', '=', $idProducto)
+            ->sum('cantidad');
+
+        $Producto=Producto::findOrFail($idProducto);
+        $Producto->update(['stock'=>$Producto->stock+$CuantosProductos]);
+        $Venta->productos()->detach($idProducto);
+        $Cliente = Cliente::findOrFail($Venta->cliente_id);
+        $Persona = Persona::findOrFail($Cliente->persona_id);
+        $Ventas = ($Venta->productos);
+
+        
+        $Productos = Producto::all();
+        $Suma = $Ventas->sum('pivot.subtotal');  
+        return view('Clases.venta.venta', compact('Venta', 'Persona', 'Productos', 'Ventas', 'Suma'));    
     }
 
     public function generar($id){
@@ -132,10 +151,12 @@ class VentaController extends Controller
         $ProductoVendido = Producto::findOrFail($request->producto);
 
         $ProductoVendido->update(['stock' => ($ProductoVendido->stock- $Cantidad)]);
-        $Ventas=$Venta->productos;  
-        $Suma=$Ventas->sum('subtotal');          
-        //dd($Venta);
-        dd($Suma);
+        $Ventas=$Venta->productos;
+        $Suma=$Ventas->sum('pivot.subtotal');          
+        //$Suma = Producto::with(['venta'])->pivot->sum('subtotal');
+        //$Suma = Producto::sum('stock');
+
+        //dd($Suma);
         return view('Clases.venta.venta',compact('Venta','Persona','Productos','Ventas','Suma'));    
     }
 
@@ -143,9 +164,9 @@ class VentaController extends Controller
         $Venta = Venta::findOrFail($idventa);
         $Cliente = Cliente::findOrFail($Venta->cliente_id);
         $Persona=Persona::findOrFail($Cliente->persona_id);
-        $Ventas = $Venta->productos;
-       // dd($Persona);
-        $pdf=PDF::loadView('Clases.venta.imprimirventa',compact('Ventas','Persona','Venta','Cliente'));
+        $Ventas = ($Venta->productos);
+        $Suma = $Ventas->sum('pivot.subtotal');
+        $pdf=PDF::loadView('Clases.venta.imprimirventa',compact('Ventas','Persona','Venta','Cliente','Suma'));
         
         return $pdf->stream('Venta.pdf');
     }

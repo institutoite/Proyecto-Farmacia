@@ -132,8 +132,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('Clases/compra/{id}/generar', 'Clases\CompraController@generar')->name('generar_compra');
     Route::get('Clases/compra/guardardetalle', 'Clases\CompraController@guardardetalle')->name('agregar_detalle_compra');
-    Route::get('Clases/compra/eliminardetalle', 'Clases\CompraController@eliminardetalle')->name('eliminar_detalle');
-
+    Route::delete('Clases/compra/eliminardetalle/{idcompra}/{idproducto}', 'Clases\CompraController@eliminardetalle')->name('eliminar_detalle_compra');
+    Route::get('imprimir_compra/{idcompra}', 'Clases\CompraController@imprimircompra')->name('imprimir_compra');
 
 
     // rutas para las Ventas
@@ -146,7 +146,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('Clases/venta/{id}/generar', 'Clases\VentaController@generar')->name('generar_venta');
 
     Route::get('Clases/venta/guardardetalle', 'Clases\VentaController@guardardetalle')->name('agregar_detalle');
-    Route::get('Clases/venta/eliminardetalle', 'Clases\VentaController@eliminardetalle')->name('eliminar_detalle');
+    Route::delete('Clases/venta/eliminardetalle/{idventa}/{idproducto}', 'Clases\VentaController@eliminardetalle')->name('eliminar_detalle_venta');
     Route::get('imprimir_venta/{idventa}','Clases\VentaController@imprimirventa')->name('imprimir_venta');
 
 

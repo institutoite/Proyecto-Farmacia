@@ -8,7 +8,7 @@ use App\Models\Clases\Compra;
 use App\Models\Clases\Producto;
 use App\Models\Clases\Proveedor;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade as PDF;
 
 class CompraController extends Controller
 {
@@ -106,6 +106,29 @@ class CompraController extends Controller
         return redirect('Clases/compra')->with('mensaje', 'Se elimo correctamente la compra');
     }
 
+
+    public function eliminardetalle($idcompra, $idProducto)
+    {
+        $Compra = Compra::findOrFail($idcompra);
+        $CuantosProductos = $Compra->productos()
+            ->where('producto_id', '=', $idProducto)
+            ->sum('cantidad');
+
+        $Producto = Producto::findOrFail($idProducto);
+        $Producto->update(['stock' => $Producto->stock - $CuantosProductos]);
+        $Compra->productos()->detach($idProducto);
+        $Proveedor = Proveedor::findOrFail($Compra->proveedor_id);
+        $Persona = Persona::findOrFail($Proveedor->persona_id);
+        $Compras = ($Compra->productos);
+
+
+        $Productos = Producto::all();
+        $Suma = $Compras->sum('pivot.subtotal');
+        return view('Clases.compra.compra', compact('Compra', 'Persona', 'Productos', 'Compras', 'Suma'));
+    }
+
+
+
     public function getProductillos(){
        
        
@@ -154,4 +177,13 @@ class CompraController extends Controller
         return view('Clases.compra.compra', compact('Compra', 'Persona', 'Productos', 'Compras'));
     }
 
+    public function imprimircompra($idcompra){
+        $Compra = Compra::findOrFail($idcompra);
+        $Proveedor = Proveedor::findOrFail($Compra->proveedor_id);
+        $Persona = Persona::findOrFail($Proveedor->persona_id);
+        $Compras = ($Compra->productos);
+        $Suma = $Compras->sum('pivot.subtotal');
+        $pdf = PDF::loadView('Clases.compra.imprimircompra', compact('Compras', 'Persona', 'Compra', 'Proveedor', 'Suma'));
+        return $pdf->stream('Compra.pdf');
+    }
 }

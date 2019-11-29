@@ -54,7 +54,7 @@
                                         
                                        
                                             <td>
-                                            <form action="{{route('eliminar_detalle', ['id' => 5])}}" class="d-inline form-eliminar" method="POST">
+                                            <form action="{{route('eliminar_detalle_compra',['idcompra' => $Compra->id,'idproducto'=>$item->id])}}" class="d-inline form-eliminar" method="POST">
                                                 @csrf @method("delete")
                                                 <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este Persona">
                                                     <i class="fa fa-fw fa-trash text-danger"></i>
@@ -68,6 +68,11 @@
                                     
                                 </tbody>
                             </table>
+                            <div class="row">
+                                <div>
+                                    <a href="{{route('imprimir_compra',['idcompra'=>$Compra->id])}}" class="btn btn-success">Aceptar</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>      

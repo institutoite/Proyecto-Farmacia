@@ -54,9 +54,9 @@
                                         
                                        
                                             <td>
-                                            <form action="{{route('eliminar_detalle', ['id' => 5])}}" class="d-inline form-eliminar" method="POST">
+                                            <form action="{{route('eliminar_detalle_venta',['idventa' => $Venta->id,'idproducto'=>$item->id])}}" class="d-inline form-eliminar" method="POST">
                                                 @csrf @method("delete")
-                                                <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este Persona">
+                                                <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este producto">
                                                     <i class="fa fa-fw fa-trash text-danger"></i>
                                                 </button>
                                             </form>
@@ -67,12 +67,12 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>{{''}}</td>
+                                        <td>{{$Suma ?? '0'}}</td>
                                 </tbody>
                             </table>
                                  <div class="row">
                                     <div>
-                                        <a href="{{route('imprimir_venta',['idventa'=>$Venta->id])}}" class="btn btn-success">Finalizar</a>
+                                        <a href="{{route('imprimir_venta',['idventa'=>$Venta->id])}}" class="btn btn-success">Aceptar</a>
                                     </div>
                                 </div>
                         </div>

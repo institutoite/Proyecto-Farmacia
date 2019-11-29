@@ -30,6 +30,9 @@
             font-size: 10;
             color: green;
         }
+        .derecha{
+            text-align: right;
+        }
 
     </style>
 </head>
@@ -55,8 +58,8 @@
    </header>
    
    <div class="alert alert-success bordered textodatos" role="alert">
-        <span>Codigo Cliente:{{$Venta->cliente_id}} </span><br>
-        <span>Nombre Cliente:{{$Persona->nombre ." ". $Persona->apellidop." ".$Persona->Apellidom}}</span>
+        <span>Codigo Proveedor:{{$Compra->proveedor_id}} </span><br>
+        <span>Proveedor:{{$Persona->nombre ." ". $Persona->apellidop." ".$Persona->Apellidom}}</span>
     </div>
     <table class="textotabla tabla table table-hover table-striped bordered" id="tablaproductos">
         <thead>                  
@@ -69,7 +72,7 @@
             </tr>
         </thead>
         <tbody class="tabla">
-                @foreach ($Venta->productos as $id => $item)
+                @foreach ($Compra->productos as $id => $item)
                 <tr class="tabla">
                 <td class="tabla">{{$item->nombre}}</td>
                 <td class="tabla">{{$item->detalle}}</td>
@@ -79,7 +82,7 @@
                 </tr> 
                 @endforeach
                 <tr>
-                <td colspan="4">Total</td>
+                <td colspan="4" class="derecha">Total</td>
                 <td class="tabla">Bs. {{$Suma ?? '0'}}</td>
                 </tr>
         </tbody>
