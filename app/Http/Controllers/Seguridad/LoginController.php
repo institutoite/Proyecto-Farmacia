@@ -24,14 +24,17 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        $roles = $user->roles()->where('estado', 1)->get();
+        $roles = $user->roles()->get();
         if ($roles->isNotEmpty()) {
+            //dd($roles->toArray());
+            //dd($user->getSession());
             $user->setSession($roles->toArray());
         } else {
             $this->guard()->logout();
             $request->session()->invalidate();
-            return redirect('seguridad/login')->withErrors(['error' => 'Este usuario no tiene ningun rol activo']);
+            return redirect('seguridad/login')->withErrors(['error' => 'Este usuario no tiene un rol activo']);
         }
+
     }
     public function username()
     {

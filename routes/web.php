@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,18 +9,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 use App\Models\Clases\Compra;
 
-Route::get('/', 'InicioController@index')->name('inicio');
+Route::get('/', 'Seguridad\LoginController@index')->name('logon');
+Route::get('/principal', 'InicioController@index')->name('inicio');
 Route::get('seguridad/login','Seguridad\LoginController@index')->name('login');
 Route::post('seguridad/login','Seguridad\LoginController@login')->name('login_post');
 Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout');
-Route::get('/pdf',function(){
-   
-    $pdf=PDF::loadView('');
-    return $pdf->stream();
-});
 
 
 Route::group(['middleware' => ['auth','superadmin']], function () {
@@ -36,6 +30,7 @@ Route::group(['middleware' => ['auth','superadmin']], function () {
     Route::get('Admin/', 'Admin\AdminController@index');
     Route::get('Admin/permiso', 'Admin\PermisoController@index')->name('permiso');
     Route::get('Admin/permiso/crear', 'Admin\PermisoController@crear')->name('permiso_crear');
+    Route::post('Admin/permiso', 'Admin\PermisoController@guardar')->name('guardar_permiso');
 
     // rutas de menu
     Route::get('Admin/menu/crear', 'Admin\MenuController@crear')->name('menu_crear');
@@ -60,7 +55,7 @@ Route::group(['middleware' => ['auth','superadmin']], function () {
     
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth']], function () {
     
 
     // RUTAS PARA TIPO PRODUCTOS
@@ -149,6 +144,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('Clases/venta/eliminardetalle/{idventa}/{idproducto}', 'Clases\VentaController@eliminardetalle')->name('eliminar_detalle_venta');
     Route::get('imprimir_venta/{idventa}','Clases\VentaController@imprimirventa')->name('imprimir_venta');
 
+    //* RUTAS PARA INVENTARIO */
+
+    Route::get('Clases/inventario','Clases\InventarioController@index')->name('inventario');
+
+
 
 });
-

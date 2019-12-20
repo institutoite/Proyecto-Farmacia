@@ -18,9 +18,10 @@ class PermisoAdministrador
         if($this->permiso())
         return $next($request);
         
-        return redirect('/')->with('mensaje','No tiene permiso para entrar en esta seccion');
+        return redirect('/')->with('mensaje','No tienew permiso para entrar en esta seccion');
     }
     private function permiso(){
+        //dd(session()->get('rol_nombre'));
         return session()->get('rol_nombre')=='administrador';
     }
 }

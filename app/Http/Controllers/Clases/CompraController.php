@@ -176,7 +176,7 @@ class CompraController extends Controller
         //dd($Venta);
         return view('Clases.compra.compra', compact('Compra', 'Persona', 'Productos', 'Compras'));
     }
-
+    
     public function imprimircompra($idcompra){
         $Compra = Compra::findOrFail($idcompra);
         $Proveedor = Proveedor::findOrFail($Compra->proveedor_id);

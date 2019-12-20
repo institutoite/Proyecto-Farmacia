@@ -34,14 +34,14 @@
                             <table class="table table-hover table-striped">
                                 <thead>                  
                                     <tr>
-                                        <th>#</th>
+                                        <th>N</th>
                                         <th>Nombre</th>
-                                        <th>ApellidoP</th>
-                                        <th>ApellidoM</th>
+                                        <th>Apellido</th>
+                                        
                                         <th>FechaNac</th>
                                         <th>Direccion</th>
-                                        <th>Genero</th>
-                                        <th>Telefono</th>
+                                        
+                                        
                                         <th>Celular</th>
                                          <th>Opciones</th>
                                     </tr>
@@ -49,14 +49,14 @@
                                 <tbody>
                                     @foreach ($data as $item)
                                         <tr>
-                                            <td>#</td>
+                                        <td>{{ $loop->iteration }}</td>
                                             <td>{{$item->nombre}}</td>
-                                            <td>{{$item->apellidop}}</td>
-                                            <td>{{$item->apellidom}}</td>
+                                            <td>{{$item->apellidop.' '.$item->apellidom}}</td>
+                                            
                                             <td>{{$item->fechanacimiento}}</td>
                                             <td>{{$item->direccion}}</td>
-                                            <td>{{$item->genero}}</td>
-                                            <td>{{$item->telefono}}</td>
+                                           
+                                          
                                             <td>{{$item->celular}}</td>
                                             
                                             <td>

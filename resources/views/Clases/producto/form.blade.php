@@ -16,8 +16,15 @@
         <select name="tipoproducto_id" id="tipoproducto_id" class="form-control" required>
             <option value="">Seleccione el tipo producto</option>
             @foreach($Dato as $id => $alias)
-                <option value="{{$id}}">{{$alias}}</option>
+                {{--<option value="{{$id}}">{{$alias}}</option>--}}
+                @isset($Datos)     
+                    <option  value="{{$id}}" {{$id==$Datos->tipoproducto_id ? 'selected':''}}>{{$alias}}</option>     
+                @else
+                    <option  value="{{$id}}">{{$alias}}</option>     
+                @endisset 
             @endforeach
         </select>
+
+        
     </div>
 </div>

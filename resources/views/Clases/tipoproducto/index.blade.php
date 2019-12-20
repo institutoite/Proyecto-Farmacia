@@ -22,12 +22,21 @@
                          
 
                         <div class="card-body">  
-                        <div class="card-header">
-                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_tipoproducto')}}">Crear Tipoproducto</a></h3>
-                        </div>     
+                             <h3 class="">LISTA TIPOS DE PRODUCTOS</h3> 
+                       
+                        <nav class="navbar navbar-light ">
+                            <form class="form-inline">
+                                <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Criterio buscar" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
+                                
+                            </form>
+                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_tipoproducto')}}">Crear Tipo Producto</a></h3>
+                        </nav>  
+                        
+
                             <table class="table table-hover table-striped">
                                 <thead>                  
-                                    <tr>
+                                    <tr class="bg-info">
                                         <th>Nº</th>
                                         <th>Nombre</th>
                                         <th class="width70">Opciones</th>
@@ -36,7 +45,7 @@
                                 <tbody>
                                     @foreach ($Dato as $data)
                                         <tr>
-                                            <td>#</td>
+                                            <td>{{$loop->iteration}}</td>
                                             <td>{{$data->nombre}}</td>
                                             <td>
                                                 <a href="{{route('editar_tipoproducto', ['id' => $data->id])}}" class="btn-accion-tabla tooltipsC" title="Editar este registro">

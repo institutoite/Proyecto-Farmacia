@@ -35,7 +35,7 @@
                             <table class="table table-hover table-striped">
                                 <thead>                  
                                     <tr>
-                                     
+                                        <th>Nº</th>
                                         <th>Fecha</th>
                                         <th>Observacion</th>
                                         <th>Proveedor</th>
@@ -46,7 +46,7 @@
                                   
                                     @foreach ($Compras as $compra)
                                         <tr>
-                                                 
+                                                <td>{{$loop->iteration}}</td>
                                                 <td>{{$compra['fecha']}}</td>
                                                 <td>{{$compra['observacion']}}</td>
                                                 <td>{{$compra['proveedor']['razonsocial']}}</td>

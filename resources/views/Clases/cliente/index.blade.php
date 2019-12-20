@@ -18,43 +18,46 @@
                 <div class="card-body table-responsive no-padding">
                               <!-- Horizontal Form -->
                      
-                    
-                        <div class="card-header">
-                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_cliente')}}">Crear Cliente</a></h3>
-                        </div>
+                   
+                        
                         <div class="card-body">
-                        <nav class="navbar navbar-light">
-                            <a class="navbar-brand">Busqueda de Clientes</a>
+                             <h3 class="">LISTA DE CLIENTES</h3> 
+                        <nav class="navbar navbar-light ">
                             <form class="form-inline">
                                 <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Criterio buscar" aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
                             </form>
+                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_cliente')}}">Crear Cliente</a></h3>
                         </nav>    
                             @csrf   
                             <table class="table table-hover table-striped">
                                 <thead>                  
-                                    <tr>
+                                    <tr class="bg-info">
                                      
-                                        <th>Nombre</th>
-                                        <th>ApellidoP</th>
-                                        <th>ApellidoM</th>
-                                        <th>FechaNac</th>
-                                        <th>Genero</th>
-                                        <th>Celular</th>
-                                        <th>carnet</th>
-                                        <th>Opciones</th>
+                                        <th>Nº</th>
+                                        <th>NOMBRE</th>
+                                        <th>APELLIDOS</th>
+                                        
+                                        <th>FECHA NACIMIENTO</th>
+                                        
+                                        <th>CELULAR</th>
+                                        <th>CARNET</th>
+                                        <th class="width70">OPCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    @php
+                                        $contador=1;
+                                    @endphp
                                     @foreach ($Personas as $clientes)
                                         <tr>
                                             @if($clientes['cliente']['persona_id']>0)
+                                                <td>{{$contador}}</td>
                                                 <td>{{$clientes['nombre']}}</td>
-                                                <td>{{$clientes['apellidop']}}</td>
-                                                <td>{{$clientes['apellidom']}}</td>
+                                                <td>{{$clientes['apellidop'].' '.$clientes['apellidom']}}</td>
+                                                
                                                 <td>{{$clientes['fechanacimiento']}}</td>
-                                                <td>{{$clientes['genero']}}</td>
+                                                
                                                 <td>{{$clientes['celular']}}</td>
                                                 <td>{{$clientes['cliente']['carnet']}}</td>
                                                    <td>
@@ -68,6 +71,9 @@
                                                     </button>
                                                 </form>
                                             </td>
+                                            @php
+                                                $contador=$contador+1;
+                                            @endphp
                                             @endif
                                         </tr>
                                     @endforeach

@@ -21,27 +21,33 @@
                     <div class="card card-info">
                          
 
-                        <div class="card-body">  
-                        <div class="card-header">
-                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_producto')}}">Crear Producto</a></h3>
-                        </div>     
+                        <div class="card-body"> 
+                              <h3 class="">LISTA DE PRODUCTOS</h3> 
+                              <nav class="navbar navbar-light ">
+                                    <form class="form-inline">
+                                        <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Criterio buscar" aria-label="Search">
+                                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
+                                    </form>
+                                        <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_producto')}}">Crear Producto</a></h3>
+                                </nav>    
+                           
                             <table class="table table-hover table-striped">
                                 <thead>                  
-                                    <tr>
+                                    <tr class="bg-info">
                                         <th>Nº</th>
-                                        <th>Nombre</th>
-                                        <th>Detalle</th>
-                                        <th>Costo</th>
-                                        <th class="width70">Opciones</th>
+                                        <th>NOMBRE</th>
+                                        <th>DETALLE</th>
+                                        <th>COSTO</th>
+                                        <th class="width70">OPCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($Datos as $data)
                                         <tr>
-                                            <td>#</td>
+                                            <td>{{$loop->iteration}}</td>
                                             <td>{{$data->nombre}}</td>
                                             <td>{{$data->detalle}}</td>
-                                            <td>{{$data->costo}}</td>
+                                            <td>{{$data->costo}} Bs.</td>
                                             <td>
                                                 <a href="{{route('editar_producto', ['id' => $data->id])}}" class="btn-accion-tabla tooltipsC" title="Editar este registro">
                                                 <i class="fa fa-fw fa-edit text-primary"></i>

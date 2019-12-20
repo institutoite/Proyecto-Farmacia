@@ -34,21 +34,26 @@
                             @csrf   
                             <table class="table table-hover table-striped">
                                 <thead>                  
-                                    <tr>
-                                     
+                                    <tr class="bg-info">
+                                        <th>Nº</th>
                                         <th>Fecha</th>
                                         <th>Observacion</th>
-                                        <th>Proveedor</th>
-                                        <th>Opciones</th>
+                                        <th>Detallar</th>
+                                        <th class="width70">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                   
                                     @foreach ($Ventas as $venta)
                                         <tr>
-                                                 
+                                                 <td>{{$loop->iteration}}</td>
                                                 <td>{{$venta['fecha']}}</td>
                                                 <td>{{$venta['descripcion']}}</td>
+                                                <td>
+                                                    <a href="{{route('generar_venta', ['id' => $venta['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
+                                                    <i class="fa fa-fw fa-list text-primary"></i>
+                                                    </a>
+                                                </td>
                                                 
                                                 <td>
                                                 <a href="{{route('editar_venta', ['id' =>$venta['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
@@ -59,15 +64,8 @@
                                                     <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este Persona">
                                                         <i class="fa fa-fw fa-trash text-danger"></i>
                                                     </button>
-                                                </form>
-                                                </td>
-                                                <td>
-                                                    
-                                                    <a href="{{route('generar_venta', ['id' => $venta['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
-                                                <i class="fa fa-fw fa-list text-primary"></i>
-                                                </a>
-                                                </td>
-                                            
+                                                </form> 
+                                                </td>  
                                         </tr>
                                     @endforeach
             

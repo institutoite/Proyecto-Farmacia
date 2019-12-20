@@ -1,13 +1,14 @@
 @if ($item["submenu"] == [])
-<li class="dd-item dd3-item" data-id="{{$item["id"]}}">
-    <div class="dd-handle dd3-handle"></div>
+<li class="nav-icon fas fa-list" data-id="{{$item["id"]}}">
     <div class="dd3-content {{$item["url"] == "javascript:;" ? "font-weight-bold" : ""}}">
-        <a href="{{url("Admin/menu/". $item["id"] . "/editar")}}">{{$item["nombre"] . " | Url -> " . $item["url"]}} Icono -> <i style="font-size:20px;" class="fa fa-fw {{isset($item["icono"]) ? $item["icono"] : ""}}"></i></a>
+        <a  href="{{url("Admin/menu/". $item["id"] . "/editar")}}">{{$item["nombre"] . " | Url -> " . $item["url"]}} Icono -> 
+            <i style="font-size:20px;" class="fa fa-fw {{isset($item["icono"]) ? $item["icono"] : ""}}"></i>
+        </a>
     </div>
 </li>
 @else
 <li class="dd-item dd3-item" data-id="{{$item["id"]}}">
-    <div class="dd-handle dd3-handle"></div>
+   
     <div class="dd3-content {{$item["url"] == "javascript:;" ? "font-weight-bold" : ""}}">
         <a href="{{url("Admin/menu/". $item["id"] . "/editar") }}">{{ $item["nombre"] . " | Url -> " . $item["url"]}} Icono -> <i style="font-size:20px;" class="fa fa-fw {{isset($item["icono"]) ? $item["icono"] : ""}}"></i></a>
     </div>

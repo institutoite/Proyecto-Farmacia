@@ -71,9 +71,12 @@ class ClienteController extends Controller
     public function editar($id)
     {
         $ClienteBuscado = Cliente::findOrFail($id);
-        //dd($UsuarioBuscado);
-        $Personas = Persona::all();
-        return view('Clases.cliente.editar', compact('ClienteBuscado', 'Personas'));
+
+        //dd($ClienteBuscado->persona_id);
+        $Persona = Persona::findOrFail($ClienteBuscado->persona_id);
+        $Personas =Persona::all();
+        ///dd($Persona);
+        return view('Clases.cliente.editar', compact('ClienteBuscado', 'Persona','Personas'));
     }
 
     /**

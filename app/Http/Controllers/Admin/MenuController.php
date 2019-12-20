@@ -18,7 +18,7 @@ class MenuController extends Controller
     public function index()
     {
        $menus=Menu::getMenu();
-       return view('Admin.menu.index',\compact('menus'));
+       return view('Admin.menu.index',compact('menus'));
        //dd($menus);
     }
 

@@ -18,9 +18,14 @@
         <select name="persona_id" id="persona_id" class="form-control" required>
             <option value="">Seleccione una persona</option>
             @foreach($Personas as $id => $nombre)
-               
-            <option  value="{{$nombre['id']}}" >{{$nombre['nombre']}}</option>
-
+                {{--<option  value="{{$nombre['id']}}" {{ ($Persona!=null )? ($nombre['id']==$Persona->id ? 'selected':''):''}} >
+                {{$nombre['nombre']}}
+                </option>--}}
+                @isset($Persona)     
+                    <option  value="{{$nombre['id']}}" {{$nombre['id']==$Persona->id ? 'selected':''}}>{{$nombre['nombre']}}</option>     
+                @else
+                    <option  value="{{$nombre['id']}}">{{$nombre['nombre']}}</option>     
+                @endisset
             @endforeach
         </select>
     </div>

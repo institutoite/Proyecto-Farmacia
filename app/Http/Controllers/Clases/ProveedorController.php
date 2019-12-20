@@ -69,9 +69,10 @@ class ProveedorController extends Controller
     public function editar($id)
     {
         $ProveedorBuscado = Proveedor::findOrFail($id);
-        $Personas = Persona::all();
-        dd($Personas);
-        return view('Clases.proveedor.editar', compact('ProveedorBuscado', 'Personas'));
+        
+        $Persona = Persona::findOrFail($ProveedorBuscado->persona_id);
+        $Personas =Persona::all();
+        return view('Clases.proveedor.editar', compact('ProveedorBuscado', 'Personas','Persona'));
     }
 
     /**

@@ -22,6 +22,7 @@ class Usuario extends Authenticatable
     }
 
     public function setSession($roles){
+        //dd($roles);
         if (count($roles) == 1) {
             Session::put(
                 [

@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reporte</title>
-<link rel="stylesheet" href="{{asset("assets/lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css")}}">
-  <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="{{asset("assets/lte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css")}}">
-<link rel="stylesheet" href="{{asset("assets/lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css")}}">
+
     <style>
         .texto{
             color: dimgray;
@@ -54,11 +51,11 @@
     <hr style="color:gray;" />
    </header>
    
-   <div class="alert alert-success bordered textodatos" role="alert">
+   <div>
         <span>Codigo Cliente:{{$Venta->cliente_id}} </span><br>
         <span>Nombre Cliente:{{$Persona->nombre ." ". $Persona->apellidop." ".$Persona->Apellidom}}</span>
     </div>
-    <table class="textotabla tabla table table-hover table-striped bordered" id="tablaproductos">
+    <table class="textotabla tabla" id="tablaproductos">
         <thead>                  
             <tr class="tabla">
                 <th class="tabla">Producto</th>

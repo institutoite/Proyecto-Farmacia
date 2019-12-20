@@ -20,31 +20,33 @@
                      
                     
                         <div class="card-header">
-                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_empleado')}}">Crear Empleado</a></h3>
-                        </div>
-                        <div class="card-body">
-                       <nav class="navbar navbar-light">
-                            <a class="navbar-brand">Busqueda de empleados</a>
+                            <h3 class="">LISTA TIPOS DE EMPLEADO</h3> 
+                       
+                        <nav class="navbar navbar-light ">
                             <form class="form-inline">
                                 <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Escribe aqui que desea buscar" aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
                             </form>
-                        </nav>
+                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_empleado')}}">Crear Empleado</a></h3>
+                        </nav>  
+                        </div>
+                        <div class="card-body">
+                      
                                                 
                             @csrf   
                             <table class="table table-hover table-striped">
                                 <thead>                  
-                                    <tr>
+                                    <tr class="bg-info">
                                      
-                                        <th>Nombre</th>
-                                        <th>ApellidoP</th>
-                                        <th>ApellidoM</th>
-                                        <th>FechaNac</th>
-                                        <th>Genero</th>
-                                        <th>Celular</th>
-                                        <th>sueldo</th>
-                                        <th>FechaIn</th>
-                                       
+                                        <th>NOMBRE</th>
+                                        <th>APELLIDOS</th>
+                                        
+                                        <th>FECHA NAC</th>
+                                        
+                                        <th>CELULAR</th>
+                                        <th>SUELDO</th>
+                                        <th>INGRESO</th>
+                                        <th class="width70">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,10 +55,10 @@
                                         <tr>
                                             @if($empleados['empleado']['persona_id']>0)
                                                 <td>{{$empleados['nombre']}}</td>
-                                                <td>{{$empleados['apellidop']}}</td>
-                                                <td>{{$empleados['apellidom']}}</td>
+                                                <td>{{$empleados['apellidop'].' '.$empleados['apellidom']}}</td>
+                                                
                                                 <td>{{$empleados['fechanacimiento']}}</td>
-                                                <td>{{$empleados['genero']}}</td>
+                                                
                                                 <td>{{$empleados['celular']}}</td>
                                                 <td>{{$empleados['empleado']['sueldo']}}</td>
                                                 <td>{{$empleados['empleado']['fechaingreso']}}</td>

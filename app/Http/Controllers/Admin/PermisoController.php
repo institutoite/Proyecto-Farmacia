@@ -37,7 +37,9 @@ class PermisoController extends Controller
      */
     public function guardar(Request $request)
     {
-        //
+        Permiso::create($request->all());
+        // dd($Unapersona);
+        return redirect('Admin/permiso')->with('mensaje', 'Permiso ha sido guardado correctamente');
     }
 
     /**

@@ -13,8 +13,8 @@ class Tablarolseeder extends Seeder
     {
         $rols=[
             'administrador',
-            'editor',
-            'supervisor'
+            'supervisor',
+            'vendedor'
         ];
 
         foreach ($rols as $key => $value) {

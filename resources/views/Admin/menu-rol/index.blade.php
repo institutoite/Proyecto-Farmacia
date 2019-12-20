@@ -19,18 +19,18 @@
                               <!-- Horizontal Form -->
                      
                     
-                        <div class="card-header">
-                            <h3 class="card-title">Menu-Rol</h3>
+                        <div class="card-header card-info">
+                            <h3 class="card-title">ADMINISTRACION DE MENUS</h3>
                         </div>
                         <div class="card-body">
                             @csrf   
                             <table class="table table-hover table-striped">
                                 <thead>                  
                                     <tr>
-                                        <th>Menu</th>
-                                        <th>Administrador</th>
-                                        <th>Editor</th>
-                                        <th>Supervisor</th>
+                                        <th>MENU</th>
+                                        <th>ADMINISTRADOR</th>
+                                        <th>EDITOR</th>
+                                        <th>VENDEDOR</th>
                                     </tr>
                                 </thead>
                                 <tbody>

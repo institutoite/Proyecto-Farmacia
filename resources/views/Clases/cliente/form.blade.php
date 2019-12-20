@@ -7,11 +7,15 @@
     <div class="col-lg-8">
         <select name="persona_id" id="persona_id" class="form-control" required>
             <option value="">Seleccione una persona</option>
-            @foreach($Personas as $id => $nombre)
-               
-            <option  value="{{$nombre['id']}}" >{{$nombre['nombre']}}</option>
-
-            @endforeach
+                @foreach($Personas as $id => $nombre)   
+                    @isset($Persona)     
+                        <option  value="{{$nombre['id']}}" {{$nombre['id']==$Persona->id ? 'selected':''}}>{{$nombre['nombre'].' '.$nombre['apellidop']}}</option>     
+                    @else
+                        <option  value="{{$nombre['id']}}">{{$nombre['nombre'].' '.$nombre['apellidop'] }}</option>     
+                    @endisset 
+                    
+                @endforeach                                            
         </select>
+        
     </div>
 </div> 

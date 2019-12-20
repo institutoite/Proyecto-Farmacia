@@ -18,23 +18,32 @@
                 <div class="card-body table-responsive no-padding">
                               <!-- Horizontal Form -->
                      
-                    <div class="card card-info">
+                    <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">lista de roles</h3>
+                            <h3 class="">LISTA TIPOS DE PRODUCTOS</h3> 
+                       
+                        <nav class="navbar navbar-light ">
+                            <form class="form-inline">
+                                <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Criterio buscar" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
+                                
+                            </form>
+                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_rol')}}">Crear Rol</a></h3>
+                        </nav>  
                         </div>
                         <div class="card-body">   
                             <table class="table table-hover table-striped">
                                 <thead>                  
-                                    <tr>
+                                    <tr class="bg-info">
                                         <th>Nº</th>
-                                        <th>Nombre</th>
-                                        <th class="width70"></th>
+                                        <th>NOMBRE</th>
+                                        <th class="width70">OPCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($datas as $data)
                                         <tr>
-                                            <td>#</td>
+                                            <td>{{$loop->iteration}}</td>
                                             <td>{{$data->nombre}}</td>
                                             <td>
                                                 <a href="{{route('editar_rol', ['id' => $data->id])}}" class="btn-accion-tabla tooltipsC" title="Editar este registro">

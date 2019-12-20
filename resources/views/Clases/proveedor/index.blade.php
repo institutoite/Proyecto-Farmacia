@@ -20,44 +20,50 @@
                      
                     
                         <div class="card-header">
-                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_proveedor')}}">Crear Proveedor</a></h3>
-                        </div>
-                        <div class="card-body">
-                       <nav class="navbar navbar-light">
-                            <a class="navbar-brand">Busqueda de proveedor</a>
+                            
+                            <h3 class="">LISTA DE PROVEEDORES</h3> 
+                       
+                        <nav class="navbar navbar-light ">
                             <form class="form-inline">
                                 <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Criterio de busqueda" aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
                             </form>
-                        </nav>
+                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_proveedor')}}">Crear Proveedor</a></h3>
+                        </nav>  
+                        </div>
+                        <div class="card-body">
+                      
                                                 
                             @csrf   
                             <table class="table table-hover table-striped">
                                 <thead>                  
-                                    <tr>
-                                     
-                                        <th>Nombre</th>
-                                        <th>ApellidoP</th>
-                                        <th>ApellidoM</th>
-                                        <th>FechaNac</th>
-                                        <th>Genero</th>
-                                        <th>Celular</th>
-                                        <th>Rubro</th>
-                                        <th>Nacionalidad</th>
-                                        <th>Razon S</th>
-                                        <th>Opciones</th>
+                                    <tr class="bg-info">
+                                        <th>Nº</th>
+                                        <th>NOMBRE</th>
+                                        <th>APELLIDO</th>
+                                        
+                                        <th>FECHA NAC.</th>
+                                        
+                                        <th>CELULAR</th>
+                                        <th>RUBRO</th>
+                                        <th>NACIONALIDAD</th>
+                                        <th>RAZON SOCIAL</th>
+                                        <th>OPCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    @php
+                                        $contador=1;
+                                    @endphp
                                     @foreach ($Personas as $proveedor)
                                         <tr>
                                             @if($proveedor['proveedor']['persona_id']>0)
+                                                <td>{{$contador}}</td>    
                                                 <td>{{$proveedor['nombre']}}</td>
-                                                <td>{{$proveedor['apellidop']}}</td>
-                                                <td>{{$proveedor['apellidom']}}</td>
+                                                <td>{{$proveedor['apellidop'].' '.$proveedor['apellidom']}}</td>
+                                                
                                                 <td>{{$proveedor['fechanacimiento']}}</td>
-                                                <td>{{$proveedor['genero']}}</td>
+                                                
                                                 <td>{{$proveedor['celular']}}</td>
                                                 <td>{{$proveedor['proveedor']['rubro']}}</td>
                                                 <td>{{$proveedor['proveedor']['nacionalidad']}}</td>
@@ -74,6 +80,9 @@
                                                     </button>
                                                 </form>
                                             </td>
+                                            @php
+                                                $contador=$contador+1;
+                                            @endphp
                                             @endif
                                         </tr>
                                     @endforeach

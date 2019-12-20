@@ -23,7 +23,10 @@ class VentaController extends Controller
     {
         $observacion = $request->get('buscarpor');
 
-        $Ventas = Venta::all()->toArray();
+         $Ventas = Venta::all()->toArray();
+        //$Ventas = Venta::where('descripcion', 'LIKE', "%$observacion%")->get()->toArray();
+       // $Ventas = Venta::with(['cliente'])->get();
+        //$Cliente = Cliente::findOrFail($Ventas->);    
         //dd($Ventas);
         return view('Clases.venta.index')->with('Ventas', $Ventas);
     } 
@@ -161,14 +164,20 @@ class VentaController extends Controller
     }
 
     public function imprimirventa($idventa){
+       
         $Venta = Venta::findOrFail($idventa);
+       
         $Cliente = Cliente::findOrFail($Venta->cliente_id);
+       
         $Persona=Persona::findOrFail($Cliente->persona_id);
+        
         $Ventas = ($Venta->productos);
+        
         $Suma = $Ventas->sum('pivot.subtotal');
+       
         $pdf=PDF::loadView('Clases.venta.imprimirventa',compact('Ventas','Persona','Venta','Cliente','Suma'));
         
-        return $pdf->stream('Venta.pdf');
+        return $pdf->stream('Venta');
     }
 
 

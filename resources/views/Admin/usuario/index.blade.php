@@ -20,23 +20,31 @@
                      
                     
                         <div class="card-header">
-                            <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_usuario')}}">Crear Usuario</a></h3>
+                           <h3 class="">LISTA DE USUARIOS</h3> 
+                              <nav class="navbar navbar-light ">
+                                    <form class="form-inline">
+                                        <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Criterio buscar" aria-label="Search">
+                                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
+                                    </form>
+                                        <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_usuario')}}">Crear Usuario</a></h3>
+                                </nav> 
                         </div>
                         <div class="card-body">
+                            
                             @csrf   
                             <table class="table table-hover table-striped">
                                 <thead>                  
-                                    <tr>
-                                        <th>#</th>
-                                        <th>nombre</th>
-                                        <th>usuario</th>
-                                        <th>Opciones</th>
+                                    <tr class="bg-info">
+                                        <th>Nº</th>
+                                        <th>NOMBRE</th>
+                                        <th>USUARIO</th>
+                                        <th class="width70">OPCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($datas as $key=>$item)
                                         <tr>
-                                            <td>#</td>
+                                            <td>{{$loop->iteration}}</td>
                                             <td>{{$item['nombre']}}</td>
                                             <td>{{$item['usuario']}}</td>
                                             <td>
