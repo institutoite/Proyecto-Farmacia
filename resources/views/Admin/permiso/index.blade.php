@@ -13,10 +13,19 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+                @include('includes.mensaje')
                 <div class="card">
                      <div class="card-header bg-info">
                         <h3 class="card-title">LISTA DE PERMISOS</h3>
+                        
                     </div>
+                    <nav class="navbar navbar-light ">
+                        <form class="form-inline">
+                            <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Criterio buscar" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
+                            </form>
+                        <h3 class="card-title"><a class="btn btn-success" href="{{route('permiso_crear')}}">Crear Permiso</a></h3>
+                    </nav>
                      <div class="card-body table-responsive no-padding">
                         <table class="table table-hover table-striped">
                             <thead>

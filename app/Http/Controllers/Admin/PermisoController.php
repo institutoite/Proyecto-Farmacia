@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Permiso;
-
+use App\Http\Requests\ValidarPermiso;
 class PermisoController extends Controller
 {
     /**
@@ -15,8 +15,8 @@ class PermisoController extends Controller
      */
     public function index()
     {
-        $permisos= Permiso::orderBy('id')->get();
-        return view('Admin.permiso.index',['permisos'=>$permisos]);
+         $permisos = Permiso::orderBy('id')->get();
+        return view('admin.permiso.index', compact('permisos'));
     }
 
     /**
@@ -26,7 +26,7 @@ class PermisoController extends Controller
      */
     public function crear()
     {
-        return view('Admin.permiso.crear');
+        return view('admin.permiso.crear');
     }
 
     /**
@@ -35,7 +35,7 @@ class PermisoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function guardar(ValidarPermiso $request)
     {
         Permiso::create($request->all());
         // dd($Unapersona);
@@ -61,7 +61,8 @@ class PermisoController extends Controller
      */
     public function editar($id)
     {
-        //
+        $data = Permiso::findOrFail($id);
+        return view('Admin.permiso.editar', compact('data'));
     }
 
     /**
@@ -71,9 +72,10 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, $id)
+    public function actualizar(ValidarPermiso $request, $id)
     {
-        //
+        Permiso::findOrFail($id)->update($request->all());
+        return redirect('Admin/permiso')->with('mensaje', 'Permiso actualizado con exito');
     }
 
     /**
@@ -82,8 +84,25 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function eliminar($id)
+    public function eliminar(ValidarPermiso $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            if (Permiso::destroy($id)) {
+                return response()->json(['mensaje' => 'ok']);
+            } else {
+                return response()->json(['mensaje' => 'ng']);
+            }
+        } else {
+            abort(404);
+        }
+    }
+
+    public function eliminar_per($id)
+    {
+         $permiso = Permiso::findOrFail($id);
+         //$permisos = Permiso::all();
+         $permiso->delete();
+        return redirect('Admin/permiso')->with('mensaje','El permiso ha sido eliminado corrctamente');
+       //return view('Admin.permiso',compact('permisos'));
     }
 }

@@ -7,8 +7,8 @@
 <script src="{{asset("assets/pages/scripts/admin/menu-rol/index.js")}}" type="text/javascript"></script>
 @endsection
 
-
 @section('contenido')
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
@@ -23,7 +23,7 @@
                             <h3 class="card-title">ADMINISTRACION DE MENUS</h3>
                         </div>
                         <div class="card-body">
-                            @csrf   
+                               
                             <table class="table table-hover table-striped">
                                 <thead>                  
                                     <tr>
@@ -42,12 +42,14 @@
                                 <td class="font-weight-bold"><i class="fa fa-arrows-alt"></i> {{$menu["nombre"]}}</td>
                                 @foreach($rols as $id => $nombre)
                                     <td class="text-center">
+                                        @csrf
                                         <input
                                         type="checkbox"
                                         class="menu_rol"
                                         name="menu_rol[]"
-                                        data-menuid={{$menu[ "id"]}}
+                                        data-menuid={{$menu["id"]}}
                                         value="{{$id}}" {{in_array($id, array_column($menusRols[$menu["id"]], "id"))? "checked" : ""}}>
+                                        
                                     </td>
                                 @endforeach
                             </tr>
@@ -55,12 +57,13 @@
                                 <tr>
                                     <td class="pl-20"><i class="fa fa-arrow-right"></i> {{ $hijo["nombre"] }}</td>
                                     @foreach($rols as $id => $nombre)
+                                    @csrf
                                         <td class="text-center">
                                             <input
                                             type="checkbox"
                                             class="menu_rol"
                                             name="menu_rol[]"
-                                            data-menuid={{$hijo[ "id"]}}
+                                            data-menuid={{$hijo["id"]}}
                                             value="{{$id}}" {{in_array($id, array_column($menusRols[$hijo["id"]], "id"))? "checked" : ""}}>
                                         </td>
                                     @endforeach
@@ -69,12 +72,13 @@
                                     <tr>
                                         <td class="pl-30"><i class="fa fa-arrow-right"></i> {{$hijo2["nombre"]}}</td>
                                         @foreach($rols as $id => $nombre)
+                                        @csrf
                                             <td class="text-center">
                                                 <input
                                                 type="checkbox"
                                                 class="menu_rol"
                                                 name="menu_rol[]"
-                                                data-menuid={{$hijo2[ "id"]}}
+                                                data-menuid={{$hijo2["id"]}}
                                                 value="{{$id}}" {{in_array($id, array_column($menusRols[$hijo2["id"]], "id"))? "checked" : ""}}>
                                             </td>
                                         @endforeach
@@ -83,12 +87,13 @@
                                         <tr>
                                             <td class="pl-40"><i class="fa fa-arrow-right"></i> {{$hijo3["nombre"]}}</td>
                                             @foreach($rols as $id => $nombre)
+                                            @csrf
                                             <td class="text-center">
                                                 <input
                                                 type="checkbox"
                                                 class="menu_rol"
                                                 name="menu_rol[]"
-                                                data-menuid={{$hijo3[ "id"]}}
+                                                data-menuid={{$hijo3["id"]}}
                                                 value="{{$id}}" {{in_array($id, array_column($menusRols[$hijo3["id"]], "id"))? "checked" : ""}}>
                                             </td>
                                             @endforeach

@@ -11,7 +11,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer("theme.aside", function ($view) {
-            $menus = Menu::getMenu(false);
+            $menus = Menu::getMenu(true);
            //$menus="hola";
             $view->with('menusComposer', $menus);
         });

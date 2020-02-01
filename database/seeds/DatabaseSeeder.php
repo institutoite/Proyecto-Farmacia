@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call(Tablarolseeder::class);
         //$this->call(TablaPermisoSider::class);
         //$this->call(UsuarioAdministradorSeeder::class);
-        $this->call(TablaPersonaSeeder::class);  
+        $this->call(TablaPersonaSeeder::class); 
+        //$this->call(PermisosTablaSeeder::class); 
+         
     }
     protected function TruncarTablas(array $tablas){
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');

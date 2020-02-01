@@ -285,16 +285,14 @@ class UsuarioAdministradorSeeder extends Seeder
             'icono' => 'fa fa-check'
         ]);
 
-
-
-
         DB::table('usuario_rol')->insert([
             'rol_id' => 1,
             'usuario_id' => 1,
             'estado' => 1
         ]);
+
         DB::table('usuario_rol')->insert([
-            'rol_id' => 1,
+            'rol_id' => 2,
             'usuario_id' => 2,
             'estado' => 1
         ]);

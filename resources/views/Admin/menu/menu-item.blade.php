@@ -1,5 +1,5 @@
 @if ($item["submenu"] == [])
-<li class="nav-icon fas fa-list" data-id="{{$item["id"]}}">
+<li class="nav-icon" data-id="{{$item["id"]}}">
     <div class="dd3-content {{$item["url"] == "javascript:;" ? "font-weight-bold" : ""}}">
         <a  href="{{url("Admin/menu/". $item["id"] . "/editar")}}">{{$item["nombre"] . " | Url -> " . $item["url"]}} Icono -> 
             <i style="font-size:20px;" class="fa fa-fw {{isset($item["icono"]) ? $item["icono"] : ""}}"></i>

@@ -16,6 +16,7 @@ class PersonaController extends Controller
      */
     public function index(Request $request)
     {
+        can('persona.index');
         $nombre=$request->get('buscarpor');
         $data=Persona::orwhere('nombre','LIKE',"%$nombre%")->orwhere('apellidop', 'LIKE', "%$nombre%")->orwhere('apellidom', 'LIKE', "%$nombre%")->orderBy('id')->get();
         //dd($nombre);

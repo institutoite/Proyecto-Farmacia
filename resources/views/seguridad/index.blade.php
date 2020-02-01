@@ -39,7 +39,7 @@
           </div>
         @endif
 
-
+ 
       <form action="{{route('login_post')}}" method="POST" autocomplete="off">
         @csrf
         <div class="input-group mb-3">

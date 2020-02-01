@@ -1,4 +1,5 @@
 
+
 var FarmaciaV = function () {
     return {
         validacionGeneral: function (id, reglas, mensajes) {
@@ -58,3 +59,4 @@ var FarmaciaV = function () {
         },
     }
 }(); 
+

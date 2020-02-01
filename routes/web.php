@@ -10,16 +10,15 @@
 |
 */
 use App\Models\Clases\Compra;
+//Route::get('/', 'Seguridad\LoginController@index')->name('logon');
 
-Route::get('/', 'Seguridad\LoginController@index')->name('logon');
-Route::get('/principal', 'InicioController@index')->name('inicio');
-Route::get('seguridad/login','Seguridad\LoginController@index')->name('login');
-Route::post('seguridad/login','Seguridad\LoginController@login')->name('login_post');
-Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout');
-
+    Route::get('/','Seguridad\LoginController@index');
+    Route::get('/principal', 'InicioController@index')->name('inicio');
+    Route::get('seguridad/login','Seguridad\LoginController@index')->name('login');
+    Route::post('seguridad/login','Seguridad\LoginController@login')->name('login_post');
+    Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth','superadmin']], function () {
-
     Route::get('Admin/usuario', 'Admin\UsuarioController@index')->name('usuario');
     Route::get('Admin/usuario/crear', 'Admin\UsuarioController@crear')->name('crear_usuario');
     Route::post('Admin/usuario', 'Admin\UsuarioController@guardar')->name('guardar_usuario');
@@ -31,6 +30,9 @@ Route::group(['middleware' => ['auth','superadmin']], function () {
     Route::get('Admin/permiso', 'Admin\PermisoController@index')->name('permiso');
     Route::get('Admin/permiso/crear', 'Admin\PermisoController@crear')->name('permiso_crear');
     Route::post('Admin/permiso', 'Admin\PermisoController@guardar')->name('guardar_permiso');
+    Route::get('Admin/permiso/{id}/editar', 'Admin\PermisoController@editar')->name('editar_permiso');
+    Route::put('Admin/permiso/{id}', 'Admin\PermisoController@actualizar')->name('actualizar_permiso');
+    Route::delete('Admin/permiso/{id}', 'Admin\PermisoController@eliminar_per')->name('eliminar_permiso');
 
     // rutas de menu
     Route::get('Admin/menu/crear', 'Admin\MenuController@crear')->name('menu_crear');
@@ -48,16 +50,15 @@ Route::group(['middleware' => ['auth','superadmin']], function () {
 
     Route::delete('Admin/rol/{id}', 'RolController@eliminar')->name('eliminar_rol');
 
-
     /** RUTAS PARA MENU-ROL */
     Route::get('Admin/menu-rol', 'Admin\MenuRolController@index')->name('menu-rol');
-    Route::post('Admin/menu-rol', 'Admin\MenuRolController@guardar')->name('guardar_menu-rol');
+    Route::post('Admin/menu-roles', 'Admin\MenuRolController@guardar')->name('guardar_menu_rol');
     
+      /*RUTAS PERMISO_ROL*/
+    Route::get('Admin/permiso-rol', 'Admin\PermisoRolController@index')->name('permiso_rol');
+    Route::post('Admin/permiso-rol', 'Admin\PermisoRolController@guardar')->name('guardar_permiso_rol');
 });
-
 Route::group(['middleware' => ['auth']], function () {
-    
-
     // RUTAS PARA TIPO PRODUCTOS
     Route::get('Clases/tipoproducto', 'Clases\TipoproductoController@index')->name('tipoproducto');
     Route::get('Clases/tipoproducto/crear', 'Clases\TipoproductoController@crear')->name('crear_tipoproducto');
@@ -65,7 +66,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Clases/tipoproducto/{id}/editar', 'Clases\TipoproductoController@editar')->name('editar_tipoproducto');
     Route::put('Clases/tipoproducto/{id}', 'Clases\TipoproductoController@actualizar')->name('actualizar_tipoproducto');
     Route::delete('Clases/tipoproducto/{id}', 'Clases\TipoproductoController@eliminar')->name('eliminar_tipoproducto');
-
     // RUTAS PARA PRODUCTO
     Route::get('Clases/producto', 'Clases\ProductoController@index')->name('producto');
     Route::get('Clases/producto/crear', 'Clases\ProductoController@crear')->name('crear_producto');
@@ -73,7 +73,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Clases/producto/{id}/editar', 'Clases\ProductoController@editar')->name('editar_producto');
     Route::put('Clases/producto/{id}', 'Clases\ProductoController@actualizar')->name('actualizar_producto');
     Route::delete('Clases/producto/{id}', 'Clases\ProductoController@eliminar')->name('eliminar_producto');
-
     // RUTAS PARA PERSONAS
     Route::get('Clases/persona', 'Clases\PersonaController@index')->name('persona');
     Route::get('Clases/persona/crear', 'Clases\PersonaController@crear')->name('crear_persona');
@@ -81,7 +80,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Clases/persona/{id}/editar', 'Clases\PersonaController@editar')->name('editar_persona');
     Route::put('Clases/persona/{id}', 'Clases\PersonaController@actualizar')->name('actualizar_persona');
     Route::delete('Clases/persona/{id}', 'Clases\PersonaController@eliminar')->name('eliminar_persona');
-
     // RUTAS PARA empleados
     Route::get('Clases/empleado', 'Clases\EmpleadoController@index')->name('empleado');
     Route::get('Clases/empleado/crear', 'Clases\EmpleadoController@crear')->name('crear_empleado');
@@ -89,7 +87,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Clases/empleado/{id}/editar', 'Clases\EmpleadoController@editar')->name('editar_empleado');
     Route::put('Clases/empleado/{id}', 'Clases\EmpleadoController@actualizar')->name('actualizar_empleado');
     Route::delete('Clases/empleado/{id}', 'Clases\EmpleadoController@eliminar')->name('eliminar_empleado');
-
     // RUTAS PARA CLIENTES
     Route::get('Clases/cliente', 'Clases\ClienteController@index')->name('cliente');
     Route::get('Clases/cliente/crear', 'Clases\ClienteController@crear')->name('crear_cliente');
@@ -97,7 +94,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Clases/cliente/{id}/editar', 'Clases\ClienteController@editar')->name('editar_cliente');
     Route::put('Clases/cliente/{id}', 'Clases\ClienteController@actualizar')->name('actualizar_cliente');
     Route::delete('Clases/cliente/{id}', 'Clases\ClienteController@eliminar')->name('eliminar_cliente');
-
     // RUTAS PARA PROVEEDORES
     Route::get('Clases/proveedor', 'Clases\ProveedorController@index')->name('proveedor');
     Route::get('Clases/proveedor/crear', 'Clases\ProveedorController@crear')->name('crear_proveedor');
@@ -105,7 +101,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Clases/proveedor/{id}/editar', 'Clases\ProveedorController@editar')->name('editar_proveedor');
     Route::put('Clases/proveedor/{id}', 'Clases\ProveedorController@actualizar')->name('actualizar_proveedor');
     Route::delete('Clases/proveedor/{id}', 'Clases\ProveedorController@eliminar')->name('eliminar_proveedor');
-
     // RUTAS PARA PROVEEDORES
     Route::get('Clases/proveedor', 'Clases\ProveedorController@index')->name('proveedor');
     Route::get('Clases/proveedor/crear', 'Clases\ProveedorController@crear')->name('crear_proveedor');
@@ -113,9 +108,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Clases/proveedor/{id}/editar', 'Clases\ProveedorController@editar')->name('editar_proveedor');
     Route::put('Clases/proveedor/{id}', 'Clases\ProveedorController@actualizar')->name('actualizar_proveedor');
     Route::delete('Clases/proveedor/{id}', 'Clases\ProveedorController@eliminar')->name('eliminar_proveedor');
-
     // rutas pra compra
-    
     Route::get('Clases/compra', 'Clases\CompraController@index')->name('compra');
     Route::get('Clases/compra/crear', 'Clases\CompraController@crear')->name('crear_compra');
     Route::post('Clases/compra', 'Clases\CompraController@guardar')->name('guardar_compra');
@@ -124,13 +117,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('Clases/compra/{id}', 'Clases\CompraController@eliminar')->name('eliminar_compra');
    // Route::get('Clases/compra/creardetalle/{id}','Clases\CompraController@cargardetalle')->name('detalle');
     Route::get('Clases/compra/productillos', 'Clases\ProductoController@getProductillos')->name('litar');
-
     Route::get('Clases/compra/{id}/generar', 'Clases\CompraController@generar')->name('generar_compra');
     Route::get('Clases/compra/guardardetalle', 'Clases\CompraController@guardardetalle')->name('agregar_detalle_compra');
     Route::delete('Clases/compra/eliminardetalle/{idcompra}/{idproducto}', 'Clases\CompraController@eliminardetalle')->name('eliminar_detalle_compra');
     Route::get('imprimir_compra/{idcompra}', 'Clases\CompraController@imprimircompra')->name('imprimir_compra');
-
-
     // rutas para las Ventas
     Route::get('Clases/venta', 'Clases\VentaController@index')->name('venta');
     Route::get('Clases/venta/crear', 'Clases\VentaController@crear')->name('crear_venta');

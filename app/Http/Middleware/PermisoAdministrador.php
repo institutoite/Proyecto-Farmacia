@@ -23,5 +23,6 @@ class PermisoAdministrador
     private function permiso(){
         //dd(session()->get('rol_nombre'));
         return session()->get('rol_nombre')=='administrador';
+
     }
 }
