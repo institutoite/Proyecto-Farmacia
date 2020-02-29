@@ -30,6 +30,7 @@
                          
 
                         <div class="form-group">
+                             @if(can('compra.index'))
                             <table class="table table-hover table-striped" id="tablaproductos">
                                 <thead>                  
                                     <tr>
@@ -54,6 +55,7 @@
                                         
                                        
                                             <td>
+                                                
                                             <form action="{{route('eliminar_detalle_compra',['idcompra' => $Compra->id,'idproducto'=>$item->id])}}" class="d-inline form-eliminar" method="POST">
                                                 @csrf @method("delete")
                                                 <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este Persona">
@@ -68,9 +70,15 @@
                                     
                                 </tbody>
                             </table>
+                            @else 
+                                Usted no tiene permiso para ver esta seccion
+                            @endif
+
                             <div class="row">
                                 <div>
+                                    @if(can('compra.imprimir')) 
                                     <a href="{{route('imprimir_compra',['idcompra'=>$Compra->id])}}" class="btn btn-success">Aceptar</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

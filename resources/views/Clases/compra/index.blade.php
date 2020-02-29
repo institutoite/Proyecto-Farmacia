@@ -32,6 +32,7 @@
                         </nav>
                                                 
                             @csrf   
+                              @if(can('compra.index'))
                             <table class="table table-hover table-striped">
                                 <thead>                  
                                     <tr>
@@ -47,25 +48,31 @@
                                     @foreach ($Compras as $compra)
                                         <tr>
                                                 <td>{{$loop->iteration}}</td>
-                                                <td>{{$compra['fecha']}}</td>
+                                                <td>{{$compra['created_at']}}</td>
                                                 <td>{{$compra['observacion']}}</td>
                                                 <td>{{$compra['proveedor']['razonsocial']}}</td>
                                                 <td>
+                                                  @if(can('compra.editar'))    
                                                 <a href="{{route('editar_compra', ['id' =>$compra['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
                                                 <i class="fa fa-fw fa-edit text-primary"></i>
                                                 </a>
+                                                @endif
+                                                
+                                                @if(can('compra.eliminar'))
                                                 <form action="{{route('eliminar_compra', ['id' => $compra['id']])}}" class="d-inline form-eliminar" method="POST">
                                                     @csrf @method("delete")
                                                     <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este Persona">
                                                         <i class="fa fa-fw fa-trash text-danger"></i>
                                                     </button>
                                                 </form>
+                                                  @endif
                                                 </td>
                                                 <td>
-                                                    
+                                                    @if(can('compra.generarcompra'))
                                                     <a href="{{route('generar_compra', ['id' => $compra['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
-                                                <i class="fa fa-fw fa-list text-primary"></i>
-                                                </a>
+                                                    <i class="fa fa-fw fa-list text-primary"></i>
+                                                    </a>
+                                                    @endif
                                                 </td>
                                             
                                         </tr>
@@ -73,6 +80,9 @@
             
                                 </tbody>
                             </table>
+                            @else 
+                                no tiene permisos para ver esta seccion
+                            @endif
                         </div>
                     
            

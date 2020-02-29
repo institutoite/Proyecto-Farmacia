@@ -20,7 +20,9 @@
                      
                     
                         <div class="card-header">
+                       
                             <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_persona')}}">Crear Persona</a></h3>
+                      
                         </div>
                          <nav class="navbar navbar-light">
                             <a class="navbar-brand">Busqueda de empleados</a>
@@ -47,6 +49,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if(can('persona.index'))
                                     @foreach ($data as $item)
                                         <tr>
                                         <td>{{ $loop->iteration }}</td>
@@ -60,19 +63,26 @@
                                             <td>{{$item->celular}}</td>
                                             
                                             <td>
+                                                @if(can('persona.editar'))
                                                 <a href="{{route('editar_persona', ['id' => $item->id])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
                                                 <i class="fa fa-fw fa-edit text-primary"></i>
-                                                </a>
+                                                </a> 
+                                                @endif
+                                               
+                                                @if(can('persona.eliminar'))
                                                 <form action="{{route('eliminar_persona', ['id' => $item->id])}}" class="d-inline form-eliminar" method="POST">
                                                     @csrf @method("delete")
                                                     <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este Persona">
                                                         <i class="fa fa-fw fa-trash text-danger"></i>
                                                     </button>
                                                 </form>
+                                                 @endif
                                             </td>
                                         </tr>
                                     @endforeach
-
+                                    @else 
+                                        No tiene permiso de ver este contenido
+                                    @endif            
                                 </tbody>
                             </table>
                         </div>

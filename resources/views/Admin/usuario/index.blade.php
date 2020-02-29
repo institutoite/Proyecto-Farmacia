@@ -47,6 +47,7 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$item['nombre']}}</td>
                                             <td>{{$item['usuario']}}</td>
+                                            <td>{{$item['password']}}</td>
                                             <td>
                                                 <a href="{{route('editar_usuario', ['id' => $item['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
                                                 <i class="fa fa-fw fa-edit text-primary"></i>

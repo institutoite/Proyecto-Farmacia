@@ -1,0 +1,14 @@
+ok editar en usuario
+ok busqueda productos
+ok eliminar botones cancelar
+ok editar productos(el problema esta en que el cambio se produce en mas de un registro)
+
+ok que muestre la contraseña en listar usuario
+
+ok ocultar las id del los roles cuando se esta creando usuarios combo o select crear usuario
+ 
+ok compra y venta mostrar hora
+ 
+stok en venta si supera el monto existente validar 
+
+

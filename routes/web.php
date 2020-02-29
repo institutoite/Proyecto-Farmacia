@@ -7,7 +7,7 @@
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+| 
 */
 use App\Models\Clases\Compra;
 //Route::get('/', 'Seguridad\LoginController@index')->name('logon');
@@ -18,7 +18,7 @@ use App\Models\Clases\Compra;
     Route::post('seguridad/login','Seguridad\LoginController@login')->name('login_post');
     Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout');
 
-Route::group(['middleware' => ['auth','superadmin']], function () {
+Route::group(['middleware' => ['auth']], function () { //'superadmin'
     Route::get('Admin/usuario', 'Admin\UsuarioController@index')->name('usuario');
     Route::get('Admin/usuario/crear', 'Admin\UsuarioController@crear')->name('crear_usuario');
     Route::post('Admin/usuario', 'Admin\UsuarioController@guardar')->name('guardar_usuario');
@@ -137,7 +137,5 @@ Route::group(['middleware' => ['auth']], function () {
     //* RUTAS PARA INVENTARIO */
 
     Route::get('Clases/inventario','Clases\InventarioController@index')->name('inventario');
-
-
-
+    
 });

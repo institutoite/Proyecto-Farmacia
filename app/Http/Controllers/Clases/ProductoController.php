@@ -15,11 +15,21 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $Datos = Producto::orderBy('id')->get(); 
+        $nombre = $request->get('buscarpor');
+        //dd($nombre); 
+        $Datos = Producto::orwhere('nombre', 'LIKE', "%$nombre%")
+                           ->orwhere('detalle', 'LIKE', "%$nombre%")
+                           ->orwhere('costo', '=', "$nombre%")
+                           ->orwhere('fechavencimiento', '=', "$nombre%")
+                           
+                           ->get();
+        return view('Clases.producto.index')->with('Datos', $Datos);
 
-        return view('Clases.producto.index', compact('Datos'));
+        /*$Datos = Producto::orderBy('id')->get(); 
+
+        return view('Clases.producto.index', compact('Datos'));*/
     }
 
     /**
@@ -70,7 +80,7 @@ class ProductoController extends Controller
     {
         $Datos = Producto::findOrFail($id);
         $Dato = Tipoproducto::orderBy('id')->pluck('nombre','id')->toArray();
-        //dd($Datos->id);
+        //dd($Dato);
         return view('Clases.producto.editar', compact('Datos','Dato'));
     }
 

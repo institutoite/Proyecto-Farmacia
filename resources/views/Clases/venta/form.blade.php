@@ -9,9 +9,9 @@
         </select>
     </div> 
 
-    <div class="form-group col-3">
+    <!--div class="form-group col-3">
         <input type="date" name="fecha" class="form-control" value="{{old('fecha',$Proveedorcito->fecha ?? '')}}">
-    </div>
+    </div-->
     <div class="form-group col-16">
         <input type="text" name="descripcion" class="form-control" value="{{old('descripcion',$Proveedorcito->descripcion ?? '')}}" placeholder="ingrese una observacion">
     </div> 

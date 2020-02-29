@@ -17,7 +17,7 @@ class CrearTablaCompra extends Migration
             $table->increments('id');
             $table->unsignedInteger('proveedor_id');
             $table->foreign('proveedor_id', 'fk_proveedor_compra')->references('id')->on('proveedor')->onDelete('restrict')->onUpdate('restrict');
-            $table->date('fecha');
+            $table->date('fecha')->nullable();
             $table->string('observacion', 150);
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

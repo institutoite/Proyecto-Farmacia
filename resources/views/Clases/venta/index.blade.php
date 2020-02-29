@@ -31,7 +31,8 @@
                             </form>
                         </nav>
                                                 
-                            @csrf   
+                            @csrf 
+                            @if(can('venta.index'))  
                             <table class="table table-hover table-striped">
                                 <thead>                  
                                     <tr class="bg-info">
@@ -47,30 +48,40 @@
                                     @foreach ($Ventas as $venta)
                                         <tr>
                                                  <td>{{$loop->iteration}}</td>
-                                                <td>{{$venta['fecha']}}</td>
+                                                <td>{{$venta['created_at']}}</td>
                                                 <td>{{$venta['descripcion']}}</td>
                                                 <td>
+                                                    @if(can('venta.generarventa'))
                                                     <a href="{{route('generar_venta', ['id' => $venta['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
                                                     <i class="fa fa-fw fa-list text-primary"></i>
                                                     </a>
+                                                    @endif
                                                 </td>
                                                 
                                                 <td>
-                                                <a href="{{route('editar_venta', ['id' =>$venta['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
-                                                <i class="fa fa-fw fa-edit text-primary"></i>
-                                                </a>
+                                                @if(can('venta.editar'))
+                                                    <a href="{{route('editar_venta', ['id' =>$venta['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
+                                                    <i class="fa fa-fw fa-edit text-primary"></i>
+                                                    </a>
+                                                @endif  
+
+                                                @if(can('venta.eliminar')) 
                                                 <form action="{{route('eliminar_venta', ['id' => $venta['id']])}}" class="d-inline form-eliminar" method="POST">
                                                     @csrf @method("delete")
                                                     <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este Persona">
                                                         <i class="fa fa-fw fa-trash text-danger"></i>
                                                     </button>
                                                 </form> 
+                                                @endif
                                                 </td>  
                                         </tr>
                                     @endforeach
             
                                 </tbody>
                             </table>
+                            @else 
+                                No tiene persmiso para ver esta seccion 
+                            @endif
                         </div>
                     
            

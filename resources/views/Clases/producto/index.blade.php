@@ -28,9 +28,11 @@
                                         <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Criterio buscar" aria-label="Search">
                                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
                                     </form>
-                                        <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_producto')}}">Crear Producto</a></h3>
+                                        
+                                    <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_producto')}}">Crear Producto</a></h3>
+                                       
                                 </nav>    
-                           
+                            @if(can('producto.index'))
                             <table class="table table-hover table-striped">
                                 <thead>                  
                                     <tr class="bg-info">
@@ -49,20 +51,28 @@
                                             <td>{{$data->detalle}}</td>
                                             <td>{{$data->costo}} Bs.</td>
                                             <td>
+                                                 @if(can('producto.editar'))    
                                                 <a href="{{route('editar_producto', ['id' => $data->id])}}" class="btn-accion-tabla tooltipsC" title="Editar este registro">
                                                 <i class="fa fa-fw fa-edit text-primary"></i>
                                                 </a>
+                                                @endif
+
+                                                 @if(can('producto.eliminar'))
                                                 <form action="{{route('eliminar_producto', ['id' => $data->id])}}" class="d-inline form-eliminar" method="POST">
                                                     @csrf @method("delete")
                                                     <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este registro">
                                                         <i class="fa fa-fw fa-trash text-danger"></i>
                                                     </button>
                                                 </form>
+                                                @endif
                                             </td>
                                         </tr>    
                                     @endforeach
                                 </tbody>
                             </table>
+                            @else 
+                                No tiene permiso para ver este contenido
+                            @endif
                         </div>
                     </div>
            

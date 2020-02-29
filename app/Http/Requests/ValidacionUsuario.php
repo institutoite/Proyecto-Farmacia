@@ -26,7 +26,8 @@ class ValidacionUsuario extends FormRequest
         return [
             'usuario'=> 'required|max:50|unique:usuario,usuario,'.$this->route('id'), 
             'password' => 'required|min:5',
-            'nombre' =>'required|max:50' 
+            'nombre' =>'required|max:50',
+            'rol_id' => 'required'
         ];
     }
 }

@@ -46,10 +46,12 @@
                                                 <td>{{$producto['detalle']}}</td>
                                                 <td>{{$producto['stock']}}</td>
                                                 <td>{{$producto['fechavencimiento']}}</td>
-                                                <td>      
+                                                <td> 
+
                                                     <a href="{{route('generar_compra', ['id' => $producto['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
                                                     <i class="fa fa-fw fa-list text-primary"></i>
                                                     </a>
+                                                    
                                                 </td>
                                             
                                         </tr>

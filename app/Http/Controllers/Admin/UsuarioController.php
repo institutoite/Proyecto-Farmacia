@@ -16,11 +16,19 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datas=Usuario::orderBy('id')->get();
-        
-        return view('Admin.usuario.index',compact('datas'));
+
+        $nombre = $request->get('buscarpor');
+        //dd($nombre); 
+        $datas = Usuario::orwhere('nombre', 'LIKE', "%$nombre%")
+                           ->orwhere('usuario', 'LIKE', "%$nombre%")
+                           ->orwhere('id', '=', "$nombre")
+                           ->get();
+
+
+        //$datas=Usuario::orderBy('id')->get();
+        return view('Admin.usuario.index')->with('datas',$datas);
     }
 
     /**
@@ -30,7 +38,9 @@ class UsuarioController extends Controller
      */
     public function crear()
     {
-        return view('admin.usuario.crear');
+         $rols = Rol::orderBy('id')->pluck('nombre', 'id')->toArray();
+        return view('admin.usuario.crear', compact('rols'));
+       
     }
 
     /**
@@ -41,10 +51,11 @@ class UsuarioController extends Controller
      */
     public function guardar(ValidacionUsuario $request)
     {
-        $usuario=Usuario::create($request->all());
-        return redirect('Admin/usuario')->with('mensaje','El usuario ha sido creado correctamente');
-        //
+        $usuario = Usuario::create($request->all());
+        $usuario->roles()->attach($request->rol_id,['estado'=>1]);
         //dd($request->all());
+        return redirect('Admin/usuario')->with('mensaje', 'Usuario creado con exito');
+        //return redirect('Admin/usuario')->with('mensaje','El usuario ha sido creado correctamente');
     }
 
     /**
@@ -68,7 +79,8 @@ class UsuarioController extends Controller
     {
         $UsuarioBuscado=Usuario::findOrFail($id);
         //dd($UsuarioBuscado);
-        return view('Admin.usuario.editar',compact('UsuarioBuscado'));
+         $rols = Rol::orderBy('id')->pluck('nombre', 'id')->toArray();
+        return view('Admin.usuario.editar',compact('UsuarioBuscado','rols'));
     }
 
     /**

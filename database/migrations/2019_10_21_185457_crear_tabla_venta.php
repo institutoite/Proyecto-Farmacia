@@ -17,7 +17,7 @@ class CrearTablaVenta extends Migration
             $table->increments('id');
             $table->unsignedInteger('cliente_id');
             $table->foreign('cliente_id', 'fk_cliente_venta')->references('id')->on('cliente')->onDelete('restrict')->onUpdate('restrict');
-            $table->date('fecha');
+            $table->date('fecha')->nullable();
             $table->string('descripcion', 100)->nullable();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

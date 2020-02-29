@@ -8,17 +8,23 @@
                 
         </select>
     </div>
+
+   
+
     <div class="col">
         <input type="text" name="cantidad" class="form-control" id="inputPass" placeholder="cantidad">
     </div>
-    <div class="col">
+    
+    <!--div class="col">
         <input type="date" name="fechavencimiento" class="form-control" id="inputPass" >
-    </div>
+    </div-->
     <div class="col">
         <input type="text" name="lote" class="form-control" id="inputPass" placeholder="lote">
     </div>
         
     <div class="col">
+        @if(can('compra.agregardetalle'))
         <button type="submit" class="btn btn-info">Agregar</button>
+        @endif
     </div>
 </div>

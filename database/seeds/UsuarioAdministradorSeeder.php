@@ -54,7 +54,7 @@ class UsuarioAdministradorSeeder extends Seeder
         DB::table('menu')->insert([
             'menu_id' => '1',
             'nombre' => 'Reporte',
-            'url' => 'Clases/producto/reporte',
+            'url' => '#',
             'orden' => '4',
             'icono' => 'fa fa-check'
         ]);
@@ -285,6 +285,29 @@ class UsuarioAdministradorSeeder extends Seeder
             'icono' => 'fa fa-check'
         ]);
 
+        DB::table('menu')->insert([
+            'menu_id' => '0',
+            'nombre' => 'PERMISO ROL',
+            'url' => '#12',
+            'orden' => '33',
+            'icono' => 'fa fa-check'
+        ]);
+        DB::table('menu')->insert([
+            'menu_id' => '33',
+            'nombre' => 'listar permisos',
+            'url' => 'Admin/permiso',
+            'orden' => '34',
+            'icono' => 'fa fa-check'
+        ]);
+          DB::table('menu')->insert([
+            'menu_id' => '33',
+            'nombre' => 'Configurar Permisos y roles',
+            'url' => 'Admin/permiso-rol',
+            'orden' => '35',
+            'icono' => 'fa fa-check'
+        ]);
+
+
         DB::table('usuario_rol')->insert([
             'rol_id' => 1,
             'usuario_id' => 1,
@@ -469,9 +492,25 @@ class UsuarioAdministradorSeeder extends Seeder
             'menu_id' => 32
 
         ]);
+         DB::table('menu_rol')->insert([
+            'rol_id' => 1,
+            'menu_id' => 33
+
+        ]);
+         DB::table('menu_rol')->insert([
+            'rol_id' => 1,
+            'menu_id' => 34
+
+        ]);
+         DB::table('menu_rol')->insert([
+            'rol_id' => 1,
+            'menu_id' => 35
+
+        ]);
+
 
         // *********************************************************** vendedor
-        DB::table('usuario_rol')->insert([
+        /*DB::table('usuario_rol')->insert([
             'rol_id' => 2,
             'usuario_id' => 1,
             'estado' => 1
@@ -480,7 +519,7 @@ class UsuarioAdministradorSeeder extends Seeder
             'rol_id' => 2,
             'usuario_id' => 2,
             'estado' => 1
-        ]);
+        ]);*/
 
         DB::table('menu_rol')->insert([
             'rol_id' => 2,

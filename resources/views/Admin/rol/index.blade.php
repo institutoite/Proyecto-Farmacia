@@ -23,11 +23,7 @@
                             <h3 class="">LISTA TIPOS DE PRODUCTOS</h3> 
                        
                         <nav class="navbar navbar-light ">
-                            <form class="form-inline">
-                                <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Criterio buscar" aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Búsqueda</button>
-                                
-                            </form>
+                            
                             <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_rol')}}">Crear Rol</a></h3>
                         </nav>  
                         </div>

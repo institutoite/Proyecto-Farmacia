@@ -33,7 +33,7 @@
                             <h3 class="card-title"><a class="btn btn-success" href="{{route('crear_tipoproducto')}}">Crear Tipo Producto</a></h3>
                         </nav>  
                         
-
+                        @if(can('tipoproducto.index'))    
                             <table class="table table-hover table-striped">
                                 <thead>                  
                                     <tr class="bg-info">
@@ -48,20 +48,28 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$data->nombre}}</td>
                                             <td>
+
+                                                @if(can('tipoproducto.editar'))
                                                 <a href="{{route('editar_tipoproducto', ['id' => $data->id])}}" class="btn-accion-tabla tooltipsC" title="Editar este registro">
                                                 <i class="fa fa-fw fa-edit text-primary"></i>
                                                 </a>
+                                                @endif
+                                                @if(can('tipoproducto.eliminar'))
                                                 <form action="{{route('eliminar_tipoproducto', ['id' => $data->id])}}" class="d-inline form-eliminar" method="POST">
                                                     @csrf @method("delete")
                                                     <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este registro">
                                                         <i class="fa fa-fw fa-trash text-danger"></i>
                                                     </button>
                                                 </form>
+                                                @endif    
                                             </td>
                                         </tr>    
                                     @endforeach
                                 </tbody>
                             </table>
+                            @else 
+                                No tiene permiso para ver este contenido.
+                            @endif
                         </div>
                     </div>
            

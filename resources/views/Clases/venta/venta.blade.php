@@ -3,8 +3,11 @@
     Venta
 @endsection
 
+
+
 @section("scripts")
 <script src="{{asset("assets/pages/scripts/admin/menu-rol/index.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/clases/venta/detalleventa.js")}}" type="text/javascript"></script>
 @endsection
 
 
@@ -22,7 +25,7 @@
                             <span>Codigo Cliente:{{$Venta->cliente_id}} </span><br>
                             <span>Nombre Cliente:{{$Persona->nombre ." ". $Persona->apellidop." ".$Persona->Apellidom}}</span>
                         </div>
-                        <form action="{{ route('agregar_detalle')}}" class="form-inline">
+                        <form action="{{ route('agregar_detalle')}}" class="form-inline" onsubmit="return validacion()">
                             @csrf
                             <input name="idventa" type="text" value="{{$Venta->id}}" hidden>   
                             @include('includes.form_producto')
@@ -30,6 +33,7 @@
                          
 
                         <div class="form-group">
+                            @if(can('venta.index'))
                             <table class="table table-hover table-striped" id="tablaproductos">
                                 <thead>                  
                                     <tr>
@@ -70,11 +74,17 @@
                                         <td>{{$Suma ?? '0'}}</td>
                                 </tbody>
                             </table>
+                            @endif
+
+                            
                                  <div class="row">
                                     <div>
+                                        @if(can('venta.imprimir'))
                                         <a href="{{route('imprimir_venta',['idventa'=>$Venta->id])}}" class="btn btn-success">Aceptar</a>
+                                        @endif
                                     </div>
                                 </div>
+
                         </div>
                     </div>
                 </div>      

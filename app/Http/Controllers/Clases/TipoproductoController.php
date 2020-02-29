@@ -13,11 +13,15 @@ class TipoproductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $Dato = Tipoproducto::orderBy('id')->get();
 
-        return view('Clases.tipoproducto.index', compact('Dato'));
+        $nombre = $request->get('buscarpor');
+        //dd($nombre); 
+        $Dato = Tipoproducto::orwhere('nombre', 'LIKE', "%$nombre%")
+                           ->get();
+
+        return view('Clases.tipoproducto.index')->with('Dato',$Dato);
     }
 
     /**

@@ -22,7 +22,7 @@
                 <h3 class="card-title">FORMULARIO EDITAR TIPO PRODUCTO</h3>
               </div>
             
-              <form action="{{ route('actualizar_producto',['id'=>1]) }}"  id="form-general" class="form-horizontal" method="POST" autocomplete="off">
+              <form action="{{ route('actualizar_producto',['id'=>$Datos->id]) }}"  id="form-general" class="form-horizontal" method="POST" autocomplete="off">
                 @csrf @method("put")
                 <div class="card-body">   
                   

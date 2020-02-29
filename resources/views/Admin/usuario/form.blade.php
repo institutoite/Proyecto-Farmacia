@@ -18,3 +18,17 @@
 </div>
 
 
+
+<div class="form-group mb-3">
+        <select name="rol_id" id="rol_id" class="form-control" required>
+            <option value="">Seleccione el rol</option>
+            @foreach($rols as $id => $nombre)
+                <option
+                value="{{$id}}" >
+                {{$nombre}}
+                </option>
+            @endforeach
+        </select>
+</div>
+
+

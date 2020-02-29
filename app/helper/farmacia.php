@@ -1,4 +1,7 @@
 <?php
+use App\Models\Admin\Permiso;
+use Illuminate\Database\Eloquent\Builder;
+
 if (!function_exists('getMenuActivo')) {
     function getMenuActivo($ruta)
     {
@@ -11,7 +14,7 @@ if (!function_exists('getMenuActivo')) {
 } 
 
 if (!function_exists('canUser')) {
-    function can($permiso, $redirect = true)
+    function can($permiso, $redirect = false)
     {
         if (session()->get('rol_nombre') == 'administrador') {
             return true;
@@ -23,6 +26,7 @@ if (!function_exists('canUser')) {
                 })->get()->pluck('slug')->toArray();
             });
             if (!in_array($permiso, $permisos)) {
+                
                 if ($redirect) {
                     if (!request()->ajax())
                         return redirect()->route('inicio')->with('mensaje', 'No tienes permisos para entrar en este modulo')->send();

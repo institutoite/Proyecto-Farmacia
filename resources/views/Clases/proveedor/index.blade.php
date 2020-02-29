@@ -34,7 +34,8 @@
                         <div class="card-body">
                       
                                                 
-                            @csrf   
+                            @csrf 
+                            @if(can('proveedor.index'))  
                             <table class="table table-hover table-striped">
                                 <thead>                  
                                     <tr class="bg-info">
@@ -70,16 +71,20 @@
                                                 <td>{{$proveedor['proveedor']['razonsocial']}}</td>
                                                     
                                                 <td>
+                                                @if(can('proveedor.editar'))
                                                 <a href="{{route('editar_proveedor', ['id' =>$proveedor['proveedor']['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
                                                 <i class="fa fa-fw fa-edit text-primary"></i>
                                                 </a>
+                                                @endif
+                                                @if(can('proveedor.eliminar'))
                                                 <form action="{{route('eliminar_proveedor', ['id' => $proveedor['proveedor']['id']])}}" class="d-inline form-eliminar" method="POST">
                                                     @csrf @method("delete")
                                                     <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este Persona">
                                                         <i class="fa fa-fw fa-trash text-danger"></i>
                                                     </button>
                                                 </form>
-                                            </td>
+                                                @endif
+                                                </td>
                                             @php
                                                 $contador=$contador+1;
                                             @endphp
@@ -89,6 +94,9 @@
                                 
                                 </tbody>
                             </table>
+                            @else 
+                                No tiene permiso para ver este contenido
+                            @endif 
                         </div>
                     
            

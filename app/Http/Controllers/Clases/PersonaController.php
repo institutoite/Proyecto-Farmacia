@@ -16,11 +16,18 @@ class PersonaController extends Controller
      */
     public function index(Request $request)
     {
-        can('persona.index');
+        
         $nombre=$request->get('buscarpor');
-        $data=Persona::orwhere('nombre','LIKE',"%$nombre%")->orwhere('apellidop', 'LIKE', "%$nombre%")->orwhere('apellidom', 'LIKE', "%$nombre%")->orderBy('id')->get();
+        $data=Persona::orwhere('nombre','LIKE',"%$nombre%")->
+                       orwhere('apellidop', 'LIKE', "%$nombre%")->
+                       orwhere('apellidom', 'LIKE', "%$nombre%")->
+                       orwhere('direccion', 'LIKE', "%$nombre%")->
+                       orwhere('fechanacimiento', '=', "$nombre")->
+                       orwhere('genero', '=', "$nombre")->
+                       orwhere('id', '=', "$nombre")->get();
         //dd($nombre);
-        return view('Clases.persona.index',compact('data'));
+        //dd($data);
+        return view('Clases.persona.index')->with('data',$data);
     }
 
     /**
@@ -30,6 +37,7 @@ class PersonaController extends Controller
      */
     public function crear()
     {
+        
         return view('Clases.persona.crear');
     }
 
@@ -41,6 +49,7 @@ class PersonaController extends Controller
      */
     public function guardar(ValidacionPersona $request)
     {
+        
         $Unapersona=Persona::create($request->all());
        // dd($Unapersona);
         return redirect('Clases/persona')->with('mensaje','La persona ha sido guardado correctamente');
@@ -66,6 +75,7 @@ class PersonaController extends Controller
      */
     public function editar($id)
     {
+        
         $PersonaBuscada = Persona::findOrFail($id);
         //dd($UsuarioBuscado);
         return view('Clases.persona.editar', compact('PersonaBuscada'));
@@ -80,6 +90,7 @@ class PersonaController extends Controller
      */
     public function actualizar(ValidacionPersona $request, $id)
     {
+       
         Persona::findOrFail($id)->update($request->all());
         return redirect('Clases/persona')->with('mensaje','La actualizacion se hizo correctamente');
 
@@ -93,6 +104,7 @@ class PersonaController extends Controller
      */
     public function eliminar($id)
     {
+            
         $Persona = Persona::findOrFail($id);
         $Persona->delete();
         return redirect('Clases/persona')->with('mensaje','Se elimo correctamente la persona con id '.$id);

@@ -15,7 +15,7 @@ class Usuario extends Authenticatable
     protected $fillable = [
         'usuario', 'password', 'nombre'
     ];
-    protected $guarded=['id'];
+    //protected $guarded=['id'];
     
     public function roles(){
         return $this->belongsToMany(Rol::class,'usuario_rol');
@@ -36,6 +36,7 @@ class Usuario extends Authenticatable
         }
     }
     public function setPasswordAttribute($pass){
-        $this->attributes['password']=Hash::make($pass);
+        //$this->attributes['password']=Hash::make($pass);
+        $this->attributes['password']=$pass;
     }
 }

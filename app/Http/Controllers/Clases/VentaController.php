@@ -127,10 +127,14 @@ class VentaController extends Controller
         return view('Clases.venta.venta', compact('Venta', 'Persona', 'Productos', 'Ventas', 'Suma'));    
     }
 
+    public function stock( $id ){
+       return Producto::where('id',$id)->get();
+    }
+
     public function generar($id){
 
         $Venta = Venta::findOrFail($id);
-        //dd($Venta['id']);
+        //dd($Ve
         $Persona = Persona::findOrFail($Venta['id']);
         //dd($Personas);
         $Productos= Producto::all();

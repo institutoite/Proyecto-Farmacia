@@ -19,14 +19,15 @@
             @include('includes.mensaje')             
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">FORMULARIO EDITAR TIPO PRODUCTO</h3>
+                <h3 class="card-title">FORMULARIO EDITAR COMPRA</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ route('actualizar_tipoproducto',['id'=>$Dato->id]) }}"  id="form-general" class="form-horizontal" method="POST" autocomplete="off">
+
+              <form action="{{ route('actualizar_compra',['id'=>$CompraBuscada->id]) }}"  id="form-general" class="form-horizontal" method="POST" autocomplete="off">
                 @csrf @method("put")
                 <div class="card-body">   
-                  @include('Clases.tipoproducto.form')
+                  @include('Clases.compra.form')
                 </div>
                 <div class="card-footer">   
                   @include('includes.boton_form_editar')

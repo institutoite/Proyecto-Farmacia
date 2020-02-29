@@ -33,7 +33,8 @@
                         <div class="card-body">
                       
                                                 
-                            @csrf   
+                            @csrf  
+                              @if(can('empleado.index')) 
                             <table class="table table-hover table-striped">
                                 <thead>                  
                                     <tr class="bg-info">
@@ -64,15 +65,19 @@
                                                 <td>{{$empleados['empleado']['fechaingreso']}}</td>
 
                                                 <td>
+                                                @if(can('empleado.editar'))
                                                 <a href="{{route('editar_empleado', ['id' =>$empleados['empleado']['id']])}}" class="btn-accion-tabla tooltipsC" title="Editar este usuario">
                                                 <i class="fa fa-fw fa-edit text-primary"></i>
                                                 </a>
+                                                @endif
+                                                @if(can('tipoproducto.editar'))
                                                 <form action="{{route('eliminar_empleado', ['id' => $empleados['empleado']['id']])}}" class="d-inline form-eliminar" method="POST">
                                                     @csrf @method("delete")
                                                     <button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este Persona">
                                                         <i class="fa fa-fw fa-trash text-danger"></i>
                                                     </button>
                                                 </form>
+                                                @endif    
                                             </td>
                                             @endif
                                         </tr>
@@ -80,6 +85,9 @@
 
                                 </tbody>
                             </table>
+                            @else 
+                                No tiene permiso para ver esta seccion 
+                            @endif
                         </div>
                     
            

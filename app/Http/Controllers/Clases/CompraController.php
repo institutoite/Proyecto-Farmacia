@@ -34,10 +34,10 @@ class CompraController extends Controller
      */
     public function crear()
     {
-        $Proveedor = Proveedor::all();
+        $Proveedores = Proveedor::all();
         $Productos = Producto::all();
 
-        return view('Clases.compra.crear', compact('Proveedor','Productos'));
+        return view('Clases.compra.crear', compact('Proveedores','Productos'));
         
     }
 
@@ -73,10 +73,13 @@ class CompraController extends Controller
      */
     public function editar($id)
     {
-        $ProveedorBuscado = Compra::findOrFail($id);
-        //dd($UsuarioBuscado);
+        $CompraBuscada = Compra::findOrFail($id);
+        
         $Proveedores = Proveedor::all();
-        return view('Clases.compra.editar', compact('ProveedorBuscado', 'Proveedores'));
+
+        return view('Clases.compra.editar', compact('CompraBuscada', 'Proveedores'));
+
+    
     }
 
     /**

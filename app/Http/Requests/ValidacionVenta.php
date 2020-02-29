@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Clases\Producto;
 
 class ValidacionVenta extends FormRequest
 {
@@ -21,10 +22,13 @@ class ValidacionVenta extends FormRequest
      *
      * @return array
      */
+
+
+
     public function rules()
     {
         return [
-            //
+            'cantidad' => ['required', new ValidarCampoCantidad],
         ];
     }
 }

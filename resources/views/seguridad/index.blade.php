@@ -14,18 +14,18 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('assets/lte/dist/css/adminlte.min.css')}}">
   
-
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=RrHfeJ5hAI4vOXAblEQ-J_tYAiXMBeD6KzI5PJhB8lvLqlkcywvo6wz1tOO23LBk9tSu0al687UnwPermFv6Ag_EIko2heZN1GO9Lu2qJfg" charset="UTF-8"></script></head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page fondo">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{route('inicio')}}"><b>Farmacia </b>ite </a>
+    <a href="{{route('inicio')}}"><b>FARMACIA </b>PRO VIDA </a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
-    <div class="card-body login-card-body">
+    <div class="card-body login-card-body bg-info">
       <p class="login-box-msg">Inicia sesion</p>
 <!-- /mensajes de error -->
         @if ($errors->any())
